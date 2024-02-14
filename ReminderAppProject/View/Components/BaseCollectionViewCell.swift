@@ -12,7 +12,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = UIColor(named: "buttonGray")
+        backgroundColor = .buttonGray
         
         configureHierarchy()
         configureLayout()

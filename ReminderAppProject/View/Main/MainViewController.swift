@@ -13,11 +13,16 @@ class MainViewController: BaseViewController {
     let moreButton = UIButton()
     let titleLabel = UILabel()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionLayout())
-    var leftToolBarButton = UIBarButtonItem()
-    var rightToolBarButton = UIBarButtonItem()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isToolbarHidden = false
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func configureHeirarchy() {
@@ -58,24 +63,27 @@ class MainViewController: BaseViewController {
         titleLabel.font = .systemFont(ofSize: 40, weight: .semibold)
         titleLabel.textColor = .gray
         
-        self.navigationController?.isToolbarHidden = false
-        leftToolBarButton = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(leftToolBarButtonTapped))
-        rightToolBarButton = UIBarButtonItem(title: "최신순", style: .plain, target: self, action: #selector(rightToolBarButtonTapped))
-
+        
+        self.navigationController?.toolbar.barTintColor = .systemBlue
+        let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
+        newTaskButton.title = "새로운 할 일"
+        newTaskButton.tintColor = .systemBlue
+        let addListButton = UIBarButtonItem(title: "목록 추가", style: .plain, target: self, action: #selector(addListButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        self.toolbarItems = [newTaskButton, flexibleSpace, addListButton]
     }
     
     @objc func moreButtonTapped() {
-        print("#$$$$$$$$$$")
+        print("moreButtonTapped")
+    }
+    
+    @objc func newTaskButtonTapped() {
         let vc = AddViewController()
 //        navigationController?.pushViewController(vc, animated: true)
         present(vc, animated: true)
     }
     
-    @objc func leftToolBarButtonTapped() {
-        
-    }
-    
-    @objc func rightToolBarButtonTapped() {
+    @objc func addListButtonTapped() {
         
     }
     
@@ -92,7 +100,6 @@ class MainViewController: BaseViewController {
         return layout
     }
 
-    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
