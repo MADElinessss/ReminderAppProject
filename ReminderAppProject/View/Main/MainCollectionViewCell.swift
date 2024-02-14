@@ -30,18 +30,21 @@ class MainCollectionViewCell: BaseCollectionViewCell {
     
     override func configureLayout() {
         iconImageView.snp.makeConstraints { make in
-            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(16)
+            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).inset(8)
             make.bottom.equalTo(titleLabel.snp.top)
             make.width.height.equalTo(36)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(iconImageView.snp.bottom).offset(8)
-            make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(16)
-            make.bottom.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(4)
         }
+        
         taskCount.snp.makeConstraints { make in
-            make.trailing.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.width.height.equalTo(36)
         }
     }
     
@@ -56,6 +59,10 @@ class MainCollectionViewCell: BaseCollectionViewCell {
         titleLabel.text = "오늘"
         titleLabel.textColor = .lightGray
         titleLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        
+        taskCount.text = "0"
+        taskCount.textColor = .white
+        taskCount.font = .systemFont(ofSize: 24, weight: .bold)
     }
 }
 

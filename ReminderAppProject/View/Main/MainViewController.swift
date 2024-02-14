@@ -28,26 +28,26 @@ class MainViewController: BaseViewController {
     
     override func configureConstraints() {
         moreButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-16)
+            make.top.equalTo(view).offset(36)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
             make.width.height.equalTo(44)
         }
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(44)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(24)
             make.leading.equalTo(view.safeAreaLayoutGuide).offset(16)
             make.height.equalTo(44)
         }
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).offset(16)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide).offset(48)
         }
     }
     
     override func configureView() {
         moreButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        moreButton.contentMode = .scaleToFill
-        
+        moreButton.contentMode = .scaleAspectFill
+        moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -64,6 +64,13 @@ class MainViewController: BaseViewController {
 
     }
     
+    @objc func moreButtonTapped() {
+        print("#$$$$$$$$$$")
+        let vc = AddViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+        present(vc, animated: true)
+    }
+    
     @objc func leftToolBarButtonTapped() {
         
     }
@@ -75,14 +82,16 @@ class MainViewController: BaseViewController {
     static func configureCollectionLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width * 0.4, height: UIScreen.main.bounds.height * 0.1)
-        layout.minimumLineSpacing = 0
+        let width = (UIScreen.main.bounds.width - (16 * 2 + 16)) / 2
+        layout.itemSize = CGSize(width: width, height: UIScreen.main.bounds.height * 0.1)
+        layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        layout.scrollDirection = .vertical
         
         return layout
     }
+
     
 }
 
