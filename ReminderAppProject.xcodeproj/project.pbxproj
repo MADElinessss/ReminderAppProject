@@ -22,6 +22,8 @@
 		C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99992B7CD6700083E181 /* MainCollectionViewCell.swift */; };
 		C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999B2B7CD6A40083E181 /* BaseCollectionViewCell.swift */; };
 		C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */; };
+		C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */; };
+		C1BC99A22B7D21E60083E181 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99A12B7D21E60083E181 /* TagViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		C1BC99992B7CD6700083E181 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1BC999B2B7CD6A40083E181 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewController.swift; sourceTree = "<group>"; };
+		C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99A12B7D21E60083E181 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 			children = (
 				C1BC998E2B7CD4160083E181 /* AddViewController.swift */,
 				C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */,
+				C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */,
+				C1BC99A12B7D21E60083E181 /* TagViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -205,10 +211,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */,
+				C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99782B7CD30F0083E181 /* ViewController.swift in Sources */,
 				C1BC99742B7CD30F0083E181 /* AppDelegate.swift in Sources */,
+				C1BC99A22B7D21E60083E181 /* TagViewController.swift in Sources */,
 				C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
