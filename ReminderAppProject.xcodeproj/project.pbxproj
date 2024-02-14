@@ -21,6 +21,7 @@
 		C1BC99982B7CD5C80083E181 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC99972B7CD5C80083E181 /* FSCalendar */; };
 		C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99992B7CD6700083E181 /* MainCollectionViewCell.swift */; };
 		C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999B2B7CD6A40083E181 /* BaseCollectionViewCell.swift */; };
+		C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C1BC99912B7CD5700083E181 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C1BC99992B7CD6700083E181 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1BC999B2B7CD6A40083E181 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BC998E2B7CD4160083E181 /* AddViewController.swift */,
+				C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99782B7CD30F0083E181 /* ViewController.swift in Sources */,
 				C1BC99742B7CD30F0083E181 /* AppDelegate.swift in Sources */,
+				C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
 				C1BC99922B7CD5700083E181 /* BaseViewController.swift in Sources */,

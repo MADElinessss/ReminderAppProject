@@ -49,6 +49,7 @@ class AddViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         tableView.delegate = self
@@ -56,6 +57,8 @@ class AddViewController: UIViewController {
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell0")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell1")
+        
+        tableView.backgroundColor = .buttonGray
     }
 
 }
@@ -69,7 +72,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell0", for: indexPath)
-            cell.backgroundColor = .white
+            cell.backgroundColor = .listGray
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1", for: indexPath)
@@ -77,9 +80,16 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = "마감일"
             cell.textLabel?.textColor = .white
             
-            cell.backgroundColor = .gray
+            cell.backgroundColor = .listGray
             
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            let vc = DueDateViewController()
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

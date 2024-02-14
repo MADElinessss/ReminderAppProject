@@ -79,7 +79,7 @@ class MainViewController: BaseViewController {
     
     @objc func newTaskButtonTapped() {
         let addVC = AddViewController()
-        let navController = UINavigationController(rootViewController: addVC) // 네비게이션 컨트롤러 추가
+        let navController = UINavigationController(rootViewController: addVC)
         self.present(navController, animated: true, completion: nil)
     }
     
