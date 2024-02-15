@@ -47,8 +47,33 @@ class AllTasksListViewController: BaseViewController {
     }
 
     override func configureView() {
+
+        // 마감일 순, 제목 순, 우선순위 높음만 보기
+        let deadlineSort = UIAction(title: "마감일 순으로 보기") { _ in
+            let realm = try! Realm()
+            self.taskList = realm.objects(ReminderTable.self).sorted(byKeyPath: "deadline", ascending: true)
+            self.tableView.reloadData()
+        }
         
-        let item = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), style: .plain, target: self, action: #selector(rightBarButtonItemTapped))
+        let titleSort = UIAction(title: "제목 순으로 보기") { _ in
+            let realm = try! Realm()
+            self.taskList = realm.objects(ReminderTable.self).sorted(byKeyPath: "title", ascending: true)
+            self.tableView.reloadData()
+        }
+        
+        let prioritySort = UIAction(title: "우선순위 높음만 보기") { _ in
+            let realm = try! Realm()
+            self.taskList = realm.objects(ReminderTable.self).where {
+                $0.priority == "2"
+            }.sorted(byKeyPath: "deadline", ascending: true)
+            self.tableView.reloadData()
+        }
+        
+        let pullDownButton = UIMenu(title: "정렬 기준", children: [deadlineSort, titleSort, prioritySort])
+        navigationItem.rightBarButtonItem?.menu = pullDownButton
+        
+        let item = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), primaryAction: nil, menu: pullDownButton)
+        
         navigationItem.rightBarButtonItem = item
         
         titleLabel.text = "전체"
@@ -63,6 +88,8 @@ class AllTasksListViewController: BaseViewController {
     
     @objc func rightBarButtonItemTapped() {
         // TODO: 풀다운 버튼 넣어서 정렬
+        
+        
     }
 }
 
