@@ -25,6 +25,9 @@
 		C1BC99A22B7D21E60083E181 /* AddTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99A12B7D21E60083E181 /* AddTagViewController.swift */; };
 		C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99B12B7DEF050083E181 /* AddDeadlineViewController.swift */; };
 		C1BC99B42B7DFB360083E181 /* AddPriorityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99B32B7DFB360083E181 /* AddPriorityViewController.swift */; };
+		C1BC99B72B7DFF530083E181 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99B62B7DFF530083E181 /* RealmModel.swift */; };
+		C1BC99BA2B7DFF700083E181 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC99B92B7DFF700083E181 /* Realm */; };
+		C1BC99BC2B7DFF700083E181 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC99BB2B7DFF700083E181 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,7 @@
 		C1BC99A12B7D21E60083E181 /* AddTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagViewController.swift; sourceTree = "<group>"; };
 		C1BC99B12B7DEF050083E181 /* AddDeadlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDeadlineViewController.swift; sourceTree = "<group>"; };
 		C1BC99B32B7DFB360083E181 /* AddPriorityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPriorityViewController.swift; sourceTree = "<group>"; };
+		C1BC99B62B7DFF530083E181 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1BC99BC2B7DFF700083E181 /* RealmSwift in Frameworks */,
+				C1BC99BA2B7DFF700083E181 /* Realm in Frameworks */,
 				C1BC99952B7CD5BE0083E181 /* SnapKit in Frameworks */,
 				C1BC99982B7CD5C80083E181 /* FSCalendar in Frameworks */,
 			);
@@ -80,6 +86,7 @@
 		C1BC99722B7CD30F0083E181 /* ReminderAppProject */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99B52B7DFF490083E181 /* Model */,
 				C1BC998B2B7CD3E70083E181 /* View */,
 				C1BC99732B7CD30F0083E181 /* AppDelegate.swift */,
 				C1BC99752B7CD30F0083E181 /* SceneDelegate.swift */,
@@ -133,6 +140,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		C1BC99B52B7DFF490083E181 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99B62B7DFF530083E181 /* RealmModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,6 +167,8 @@
 			packageProductDependencies = (
 				C1BC99942B7CD5BE0083E181 /* SnapKit */,
 				C1BC99972B7CD5C80083E181 /* FSCalendar */,
+				C1BC99B92B7DFF700083E181 /* Realm */,
+				C1BC99BB2B7DFF700083E181 /* RealmSwift */,
 			);
 			productName = ReminderAppProject;
 			productReference = C1BC99702B7CD30F0083E181 /* ReminderAppProject.app */;
@@ -184,6 +201,7 @@
 			packageReferences = (
 				C1BC99932B7CD5BE0083E181 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				C1BC99962B7CD5C80083E181 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				C1BC99B82B7DFF700083E181 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = C1BC99712B7CD30F0083E181 /* Products */;
 			projectDirPath = "";
@@ -224,6 +242,7 @@
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
+				C1BC99B72B7DFF530083E181 /* RealmModel.swift in Sources */,
 				C1BC99922B7CD5700083E181 /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +484,14 @@
 				minimumVersion = 2.8.4;
 			};
 		};
+		C1BC99B82B7DFF700083E181 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.47.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -477,6 +504,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C1BC99962B7CD5C80083E181 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		C1BC99B92B7DFF700083E181 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BC99B82B7DFF700083E181 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		C1BC99BB2B7DFF700083E181 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C1BC99B82B7DFF700083E181 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
