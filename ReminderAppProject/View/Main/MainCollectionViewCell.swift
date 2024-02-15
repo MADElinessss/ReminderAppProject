@@ -49,11 +49,20 @@ class MainCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func configureView() {
-        iconImageView.image = UIImage(systemName: "calendar")
-        iconImageView.tintColor = .white
-        iconImageView.backgroundColor = .systemBlue
-        iconImageView.clipsToBounds = true
         
+        // TODO: 사이즈 조정 
+        // 1. symbol scale
+        // 2. preferred symbol configuration
+        // -> point size를 조정
+        // sf symbol
+        
+        let config = UIImage.SymbolConfiguration(pointSize: 10, weight: .light)
+        self.iconImageView.image = UIImage(systemName: "calendar")
+        self.iconImageView.preferredSymbolConfiguration = config
+        
+//        iconImageView.image = UIImage(systemName: "calendar")
+        iconImageView.tintColor = .white
+        iconImageView.clipsToBounds = true
         iconImageView.layer.cornerRadius = 15
         
         titleLabel.text = "오늘"

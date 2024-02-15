@@ -10,6 +10,9 @@ import UIKit
 
 class MainViewController: BaseViewController {
     
+    let collectionViewLabels = ["오늘", "예정", "전체", "깃발 표시", "완료됨"]
+    let collectionViewIcons = ["calendar.badge.checkmark", "calendar", "tray.fill", "flag.fill", "checkmark"]
+    
     let moreButton = UIButton()
     let titleLabel = UILabel()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionLayout())
@@ -50,9 +53,8 @@ class MainViewController: BaseViewController {
     }
     
     override func configureView() {
-        moreButton.setImage(UIImage(systemName: "ellipsis.circle"), for: .normal)
-        moreButton.contentMode = .scaleAspectFill
-        moreButton.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(moreButtonTapped))
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -60,13 +62,15 @@ class MainViewController: BaseViewController {
         collectionView.backgroundColor = .black
         
         titleLabel.text = "전체"
-        titleLabel.font = .systemFont(ofSize: 40, weight: .semibold)
+        titleLabel.font = .systemFont(ofSize: 32, weight: .semibold)
         titleLabel.textColor = .gray
         
-        
+        // TODO: customView 만들기
         self.navigationController?.toolbar.barTintColor = .systemBlue
-        let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
+        let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
+//        let newTaskButton = UIBarButtonItem(title: "new", image: UIImage(systemName: "plus.circle.fill"), target: self, action: #selector(newTaskButtonTapped))
         newTaskButton.title = "새로운 할 일"
+        
         newTaskButton.tintColor = .systemBlue
         let addListButton = UIBarButtonItem(title: "목록 추가", style: .plain, target: self, action: #selector(addListButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -110,6 +114,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
         cell.layer.cornerRadius = 15
+        cell.titleLabel.text = collectionViewLabels[indexPath.item]
+        cell.iconImageView.image = UIImage(systemName: collectionViewIcons[indexPath.item])
+        if indexPath.item == 0 {
+            cell.iconImageView.backgroundColor = .systemBlue
+        } else if indexPath.item == 1 {
+            cell.iconImageView.backgroundColor = .systemRed
+        } else if indexPath.item == 2 {
+            cell.iconImageView.backgroundColor = .gray
+        } else if indexPath.item == 3 {
+            cell.iconImageView.backgroundColor = .orange
+        } else {
+            cell.iconImageView.backgroundColor = .gray
+        }
+        
         return cell
     }
     

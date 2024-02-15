@@ -24,6 +24,8 @@
 		C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */; };
 		C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */; };
 		C1BC99A22B7D21E60083E181 /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99A12B7D21E60083E181 /* TagViewController.swift */; };
+		C1BC99AD2B7DC2FF0083E181 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99AC2B7DC2FF0083E181 /* DetailViewController.swift */; };
+		C1BC99B02B7DC79F0083E181 /* DateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99AF2B7DC79F0083E181 /* DateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDateViewController.swift; sourceTree = "<group>"; };
 		C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99A12B7D21E60083E181 /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
+		C1BC99AC2B7DC2FF0083E181 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C1BC99AF2B7DC79F0083E181 /* DateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		C1BC998C2B7CD3F20083E181 /* Add */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99AE2B7DC7890083E181 /* Deadline */,
 				C1BC998E2B7CD4160083E181 /* AddViewController.swift */,
 				C1BC999D2B7CFFFB0083E181 /* DueDateViewController.swift */,
 				C1BC999F2B7D0FE80083E181 /* AddTextFieldTableViewCell.swift */,
@@ -128,6 +133,15 @@
 				C1BC999B2B7CD6A40083E181 /* BaseCollectionViewCell.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		C1BC99AE2B7DC7890083E181 /* Deadline */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99AC2B7DC2FF0083E181 /* DetailViewController.swift */,
+				C1BC99AF2B7DC79F0083E181 /* DateTableViewCell.swift */,
+			);
+			path = Deadline;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,10 +228,12 @@
 				C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
+				C1BC99AD2B7DC2FF0083E181 /* DetailViewController.swift in Sources */,
 				C1BC99782B7CD30F0083E181 /* ViewController.swift in Sources */,
 				C1BC99742B7CD30F0083E181 /* AppDelegate.swift in Sources */,
 				C1BC99A22B7D21E60083E181 /* TagViewController.swift in Sources */,
 				C1BC999E2B7CFFFB0083E181 /* DueDateViewController.swift in Sources */,
+				C1BC99B02B7DC79F0083E181 /* DateTableViewCell.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
 				C1BC99922B7CD5700083E181 /* BaseViewController.swift in Sources */,
