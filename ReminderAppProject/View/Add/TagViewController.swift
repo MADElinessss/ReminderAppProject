@@ -23,6 +23,7 @@ class TagViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tagSender?(tagTextField.text!)
+        // 💡 TODO: "capture list" 키워드 공부하기
     }
     
     override func configureHeirarchy() {
