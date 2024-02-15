@@ -67,8 +67,11 @@ class AllTasksListViewController: BaseViewController {
 }
 
 extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 10
         return taskList.count
     }
     
@@ -77,6 +80,8 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
         
         cell.taskTitle.text = taskList[indexPath.row].title
         cell.taskMemo.text = taskList[indexPath.row].memo
+        
+        cell.checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         
         return cell
     }

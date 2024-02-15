@@ -14,6 +14,12 @@ class AllTasksTableViewCell: UITableViewCell {
     let taskTitle = UILabel()
     let taskMemo = UILabel()
 
+    var isChecked: Bool = false {
+        didSet {
+            checkBox.reloadInputViews()
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -39,24 +45,34 @@ class AllTasksTableViewCell: UITableViewCell {
         }
         
         taskTitle.snp.makeConstraints { make in
-            make.leading.equalTo(checkBox.snp.trailing).inset(8)
+            make.leading.equalTo(checkBox.snp.trailing).offset(8)
             make.top.equalTo(contentView.safeAreaLayoutGuide)
         }
         
         taskMemo.snp.makeConstraints { make in
+            make.leading.equalTo(checkBox.snp.trailing).offset(8)
             make.top.equalTo(taskTitle.snp.bottom)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide)
         }
         
-        checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         
         taskTitle.text = "title"
         taskTitle.textColor = .white
         
-        taskMemo.text = "memo"
-        taskMemo.textColor = .white
+        taskMemo.text = ""
+        taskMemo.textColor = .gray
+        
+        checkBox.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
     }
 
+    @objc func checkBoxTapped() {
+        isChecked.toggle()
+        if isChecked {
+            checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
+        } else {
+            checkBox.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        }
+    }
 }
 
 #Preview {
