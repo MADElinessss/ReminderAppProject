@@ -84,13 +84,15 @@ class MainViewController: BaseViewController {
         // TODO: customView 만들기
         self.navigationController?.toolbar.barTintColor = .systemBlue
         let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
-//        let newTaskButton = UIBarButtonItem(title: "new", image: UIImage(systemName: "plus.circle.fill"), target: self, action: #selector(newTaskButtonTapped))
-        newTaskButton.title = "새로운 할 일"
+
+        let newTaskLabel = UIBarButtonItem(title: "새로운 할 일", style: .plain, target: self, action: #selector(newTaskButtonTapped))
         
         newTaskButton.tintColor = .systemBlue
+        
         let addListButton = UIBarButtonItem(title: "목록 추가", style: .plain, target: self, action: #selector(addListButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        self.toolbarItems = [newTaskButton, flexibleSpace, addListButton]
+        
+        self.toolbarItems = [newTaskButton, newTaskLabel, flexibleSpace, addListButton]
     }
     
     @objc func moreButtonTapped() {
