@@ -12,6 +12,7 @@ import UIKit
 class MainViewController: BaseViewController {
     
     var taskList: Results<ReminderTable>!
+    var todayList: Results<ReminderTable>!
     
     let collectionViewLabels = ["오늘", "예정", "전체", "깃발 표시", "완료됨"]
     let collectionViewIcons = ["calendar.badge.checkmark", "calendar", "tray.fill", "flag.fill", "checkmark"]
@@ -27,6 +28,9 @@ class MainViewController: BaseViewController {
         // TODO: 전체 할일 개수 바로 반영안됨
         let realm = try! Realm()
         taskList = realm.objects(ReminderTable.self)
+        todayList = realm.objects(ReminderTable.self).where {
+            $0.deadline == Date()
+        }
         collectionView.reloadData()
     }
     
@@ -130,6 +134,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.iconImageView.image = UIImage(systemName: collectionViewIcons[indexPath.item])
         if indexPath.item == 0 {
             cell.iconImageView.backgroundColor = .systemBlue
+            cell.taskCount.text = "\(todayList.count)"
         } else if indexPath.item == 1 {
             cell.iconImageView.backgroundColor = .systemRed
         } else if indexPath.item == 2 {
@@ -145,7 +150,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == 2 {
+        
+        if indexPath.item == 0 {
+            let vc = AllTasksListViewController()
+            print("전체 목록 탭")
+            
+            navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.item == 2 {
             let vc = AllTasksListViewController()
             print("전체 목록 탭")
             

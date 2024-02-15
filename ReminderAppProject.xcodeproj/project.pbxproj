@@ -30,6 +30,8 @@
 		C1BC99BC2B7DFF700083E181 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1BC99BB2B7DFF700083E181 /* RealmSwift */; };
 		C1BC99BE2B7E00B30083E181 /* AllTasksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99BD2B7E00B30083E181 /* AllTasksListViewController.swift */; };
 		C1BC99C12B7E14C50083E181 /* AllTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99C02B7E14C50083E181 /* AllTasksTableViewCell.swift */; };
+		C1BC99C42B7E2B060083E181 /* TodayTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99C32B7E2B060083E181 /* TodayTasksTableViewCell.swift */; };
+		C1BC99C62B7E2B110083E181 /* TodayTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99C52B7E2B110083E181 /* TodayTasksViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		C1BC99B62B7DFF530083E181 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		C1BC99BD2B7E00B30083E181 /* AllTasksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasksListViewController.swift; sourceTree = "<group>"; };
 		C1BC99C02B7E14C50083E181 /* AllTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasksTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99C32B7E2B060083E181 /* TodayTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTasksTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99C52B7E2B110083E181 /* TodayTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayTasksViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 		C1BC998B2B7CD3E70083E181 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99C22B7E2AF30083E181 /* TodayTasks */,
 				C1BC99BF2B7E00DA0083E181 /* AllTasks */,
 				C1BC99902B7CD5650083E181 /* Components */,
 				C1BC998D2B7CD40A0083E181 /* Main */,
@@ -160,6 +165,15 @@
 				C1BC99C02B7E14C50083E181 /* AllTasksTableViewCell.swift */,
 			);
 			path = AllTasks;
+			sourceTree = "<group>";
+		};
+		C1BC99C22B7E2AF30083E181 /* TodayTasks */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99C32B7E2B060083E181 /* TodayTasksTableViewCell.swift */,
+				C1BC99C52B7E2B110083E181 /* TodayTasksViewController.swift */,
+			);
+			path = TodayTasks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,6 +261,8 @@
 			files = (
 				C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */,
 				C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */,
+				C1BC99C62B7E2B110083E181 /* TodayTasksViewController.swift in Sources */,
+				C1BC99C42B7E2B060083E181 /* TodayTasksTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99BE2B7E00B30083E181 /* AllTasksListViewController.swift in Sources */,

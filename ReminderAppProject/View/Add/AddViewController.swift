@@ -13,6 +13,8 @@ let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
 
 class AddViewController: BaseViewController {
     
+    let tableView = UITableView()
+    
     var titleText: String = "" {
         didSet {
             tableView.reloadData()
@@ -25,7 +27,11 @@ class AddViewController: BaseViewController {
         }
     }
     
-    let tableView = UITableView()
+    var date: Date? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     var deadlineLabel : String = "" {
         didSet {
@@ -78,7 +84,7 @@ class AddViewController: BaseViewController {
         
         // print(realm.configuration.fileURL)
         
-        let data = ReminderTable(title: titleText, memo: memoText, deadline: Date(), tag: tagLabel, priority: priority)
+        let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
         
         try! realm.write {
             realm.add(data)
@@ -162,8 +168,8 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "deadlineCell", for: indexPath)
             
             cell.layer.cornerRadius = 10
-            if deadlineLabel != "" {
-                cell.textLabel?.text = deadlineLabel
+            if let date = date {
+                cell.textLabel?.text = "\(date)"
             } else {
                 cell.textLabel?.text = list[indexPath.section - 1]
             }
@@ -243,6 +249,8 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
                 self.deadlineLabel = dateFormatter.string(from: newValue)
+                self.date = newValue
+                
                 vc.date = newValue
             }
             
