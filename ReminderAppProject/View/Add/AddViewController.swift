@@ -5,28 +5,41 @@
 //  Created by Madeline on 2/14/24.
 //
 
+import RealmSwift
 import SnapKit
 import UIKit
 
 let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
 
-class AddViewController: UIViewController {
+class AddViewController: BaseViewController {
+    
+    var titleText: String = "" {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    var memoText: String = "" {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     let tableView = UITableView()
     
-    var deadlineLabel : String? {
+    var deadlineLabel : String = "" {
         didSet {
             tableView.reloadData()
         }
     }
     
-    var tagLabel : String? {
+    var tagLabel : String = "" {
         didSet {
             tableView.reloadData()
         }
     }
     
-    var priority: String? {
+    var priority: String = "" {
         didSet {
             tableView.reloadData()
         }
@@ -34,8 +47,7 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .buttonGray
+        
         configureView()
         configureNavigationBar()
     }
@@ -60,12 +72,23 @@ class AddViewController: UIViewController {
     }
 
     @objc func saveButtonTapped() {
+        
         // TODO: 값 전달
+        let realm = try! Realm()
+        
+        // print(realm.configuration.fileURL)
+        
+        let data = ReminderTable(title: titleText, memo: memoText, deadline: Date(), tag: tagLabel, priority: priority)
+        
+        try! realm.write {
+            realm.add(data)
+            print("CREATE")
+        }
         
         dismiss(animated: true)
     }
     
-    func configureView() {
+    override func configureView() {
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
@@ -126,6 +149,12 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .listGray
             cell.selectionStyle = .none
             
+            cell.titleSender = { value in
+                self.titleText = value
+            }
+            cell.memoSender = { value in
+                self.memoText = value
+            }
             return cell
             
         } else if indexPath.section == 1 {
@@ -133,12 +162,11 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "deadlineCell", for: indexPath)
             
             cell.layer.cornerRadius = 10
-            if let deadline = deadlineLabel {
-                cell.textLabel?.text = deadline
+            if deadlineLabel != "" {
+                cell.textLabel?.text = deadlineLabel
             } else {
                 cell.textLabel?.text = list[indexPath.section - 1]
             }
-            
             cell.textLabel?.textColor = .white
             
             cell.accessoryType = .disclosureIndicator
@@ -152,11 +180,13 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath)
             
             cell.layer.cornerRadius = 10
-            if let tag = tagLabel {
-                cell.textLabel?.text = tag
+
+            if tagLabel != "" {
+                cell.textLabel?.text = tagLabel
             } else {
                 cell.textLabel?.text = list[indexPath.section - 1]
             }
+            
             cell.textLabel?.textColor = .white
             cell.accessoryType = .disclosureIndicator
             cell.backgroundColor = .listGray
@@ -168,11 +198,13 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "priorityCell", for: indexPath)
             
             cell.layer.cornerRadius = 10
-            if let priority = priority {
+            
+            if priority != "" {
                 cell.textLabel?.text = priority
             } else {
                 cell.textLabel?.text = list[indexPath.section - 1]
             }
+            
             cell.textLabel?.textColor = .white
             cell.accessoryType = .disclosureIndicator
             cell.backgroundColor = .listGray
@@ -196,7 +228,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        
         
         if indexPath.section == 0 {
             
@@ -236,6 +268,8 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @objc func categoryReceivedNotificationObserved(notification: NSNotification) {

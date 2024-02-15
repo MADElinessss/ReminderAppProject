@@ -15,9 +15,6 @@ class AddPriorityViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .buttonGray
-
     }
     
     override func viewDidDisappear(_ animated: Bool) {

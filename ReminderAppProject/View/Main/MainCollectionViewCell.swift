@@ -11,8 +11,8 @@ import UIKit
 class MainCollectionViewCell: BaseCollectionViewCell {
     
     let iconImageView = UIImageView()
-    let titleLabel = UILabel()
-    let taskCount = UILabel()
+    var titleLabel = UILabel()
+    var taskCount = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

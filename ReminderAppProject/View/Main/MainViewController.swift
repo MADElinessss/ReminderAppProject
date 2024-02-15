@@ -5,10 +5,13 @@
 //  Created by Madeline on 2/14/24.
 //
 
+import RealmSwift
 import SnapKit
 import UIKit
 
 class MainViewController: BaseViewController {
+    
+    var taskList: Results<ReminderTable>!
     
     let collectionViewLabels = ["오늘", "예정", "전체", "깃발 표시", "완료됨"]
     let collectionViewIcons = ["calendar.badge.checkmark", "calendar", "tray.fill", "flag.fill", "checkmark"]
@@ -20,12 +23,21 @@ class MainViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = false
+        
+        // TODO: 전체 할일 개수 바로 반영안됨
+        let realm = try! Realm()
+        taskList = realm.objects(ReminderTable.self)
+        collectionView.reloadData()
     }
-
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("did appear")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = .black
+        print("did load")
     }
     
     override func configureHeirarchy() {
@@ -122,6 +134,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.iconImageView.backgroundColor = .systemRed
         } else if indexPath.item == 2 {
             cell.iconImageView.backgroundColor = .gray
+            cell.taskCount.text = "\(taskList.count)"
         } else if indexPath.item == 3 {
             cell.iconImageView.backgroundColor = .orange
         } else {
@@ -131,9 +144,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 2 {
+            let vc = AllTasksListViewController()
+            print("전체 목록 탭")
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 
 }
 
