@@ -8,7 +8,7 @@
 import SnapKit
 import UIKit
 
-class TagViewController: BaseViewController {
+class AddTagViewController: BaseViewController {
 
     var tagSender: ((String) -> Void)?
     let tagTextField = UITextField()

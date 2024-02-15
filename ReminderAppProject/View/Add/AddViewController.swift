@@ -26,6 +26,12 @@ class AddViewController: UIViewController {
         }
     }
     
+    var priority: String? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -162,7 +168,11 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "priorityCell", for: indexPath)
             
             cell.layer.cornerRadius = 10
-            cell.textLabel?.text = list[indexPath.section - 1]
+            if let priority = priority {
+                cell.textLabel?.text = priority
+            } else {
+                cell.textLabel?.text = list[indexPath.section - 1]
+            }
             cell.textLabel?.textColor = .white
             cell.accessoryType = .disclosureIndicator
             cell.backgroundColor = .listGray
@@ -208,7 +218,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else if indexPath.section == 2 {
             
-            let vc = TagViewController()
+            let vc = AddTagViewController()
             
             vc.tagSender = { newValue in
                 self.tagLabel = newValue
@@ -217,11 +227,27 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.section == 3 {
+            let vc = AddPriorityViewController()
             
+            NotificationCenter.default.addObserver(self, selector: #selector(categoryReceivedNotificationObserved), name: NSNotification.Name("Priority"), object: nil)
             
+            navigationController?.pushViewController(vc, animated: true)
             
         } else {
             
+        }
+    }
+    
+    @objc func categoryReceivedNotificationObserved(notification: NSNotification) {
+        
+        if let value = notification.userInfo?["priority"] as? Int {
+            if value == 0 {
+                priority = "낮음"
+            } else if value == 1 {
+                priority = "보통"
+            } else {
+                priority = "높음"
+            }
         }
     }
 }
