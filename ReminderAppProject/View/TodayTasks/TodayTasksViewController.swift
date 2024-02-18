@@ -21,21 +21,11 @@ class TodayTasksViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         let realm = try! Realm()
-        taskList = realm.objects(ReminderTable.self).where {
-        // TODO: 오늘인지
-//            let dateStr = "2020-08-13 16:30" // Date 형태의 String
-//            let nowDate = Date()
-//            
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd"
-//            
-//            let convertDate = dateFormatter.string(from: $0.deadline)
-//            let today = dateFormatter.string(from: nowDate)
-//            
-//            convertDate == today
-//            
-            $0.deadline == Date()
-        }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let tomorrow = calendar.date(byAdding: .day, value: 1, to: today)!
+        
+        taskList = realm.objects(ReminderTable.self).filter("deadline >= %@ AND deadline < %@", today, tomorrow)
         tableView.reloadData()
     }
 

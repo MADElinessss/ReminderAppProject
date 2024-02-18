@@ -14,7 +14,10 @@ class MainViewController: BaseViewController {
     
     // 전체 할 일
     var taskList: Results<ReminderTable>!
+    // 오늘 할 일
     var todayList: [ReminderTable] = []
+    // 예정된 할 일
+    var scheduledCount: Int = 0
     
     let moreButton = UIButton()
     let titleLabel = UILabel()
@@ -34,7 +37,14 @@ class MainViewController: BaseViewController {
             let taskDate = calendar.startOfDay(for: task.deadline)
             return taskDate == today
         }
-
+        
+        let scheduledTasks = allTasks.filter { task in
+            let taskDate = calendar.startOfDay(for: task.deadline)
+            return taskDate >= today
+        }
+        
+        scheduledCount = scheduledTasks.count
+        
         self.todayList = Array(self.todayList)
         
         collectionView.reloadData()
@@ -150,6 +160,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.taskCount.text = "\(todayList.count)"
         case .all:
             cell.taskCount.text = "\(taskList.count)"
+        case .scheduled:
+            cell.taskCount.text = "\(scheduledCount)"
         default:
             cell.taskCount.text = ""
         }
@@ -167,6 +179,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             navigationController?.pushViewController(vc, animated: true)
         case .all:
             let vc = AllTasksListViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case .scheduled:
+            let vc = SchduledTasksViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:
             break // 다른 아이템에 대한 처리
