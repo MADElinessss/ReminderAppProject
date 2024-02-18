@@ -9,20 +9,12 @@ import RealmSwift
 import SnapKit
 import UIKit
 
-let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
-
 class AddViewController: BaseViewController {
     
     let tableView = UITableView()
     let repository = RealmRepository()
     
     var sections: [SectionType] = [.titleMemo, .deadline, .tag, .priority, .imageAdd]
-    
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        return formatter
-    }()
     
     var titleText: String = "" {
         didSet {
@@ -63,7 +55,6 @@ class AddViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureView()
         configureNavigationBar()
     }
     
@@ -182,7 +173,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             if let date = date {
                 cell.textLabel?.text = "\(date)"
             } else {
-                cell.textLabel?.text = list[indexPath.section - 1]
+                cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             }
             cell.textLabel?.textColor = .white
             
@@ -200,7 +191,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             if tagLabel != "" {
                 cell.textLabel?.text = tagLabel
             } else {
-                cell.textLabel?.text = list[indexPath.section - 1]
+                cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             }
             
             cell.textLabel?.textColor = .white
@@ -216,7 +207,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             if priority != "" {
                 cell.textLabel?.text = priority
             } else {
-                cell.textLabel?.text = list[indexPath.section - 1]
+                cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             }
             
             cell.textLabel?.textColor = .white
@@ -228,7 +219,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .imageAdd:
             cell.layer.cornerRadius = 10
-            cell.textLabel?.text = list[indexPath.section - 1]
+            cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             cell.textLabel?.textColor = .white
             cell.accessoryType = .disclosureIndicator
             cell.backgroundColor = .listGray

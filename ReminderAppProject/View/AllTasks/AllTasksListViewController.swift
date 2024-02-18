@@ -126,6 +126,17 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let task = taskList[indexPath.row]
+        
+        let detailVC = DetailViewController(taskID: task.id)
+        let navController = UINavigationController(rootViewController: detailVC)
+        
+        self.present(navController, animated: true, completion: nil)
+        
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let detail = UIContextualAction(style: .normal, title: "세부사항") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             success(true)

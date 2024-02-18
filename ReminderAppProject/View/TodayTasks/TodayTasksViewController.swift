@@ -13,8 +13,8 @@ import UIKit
 class TodayTasksViewController: BaseViewController {
     
     var taskList: Results<ReminderTable>!
-    let repository = RealmRepository()
     
+    let repository = RealmRepository()
     let titleLabel = UILabel()
     let tableView = UITableView()
     let realm = try! Realm()

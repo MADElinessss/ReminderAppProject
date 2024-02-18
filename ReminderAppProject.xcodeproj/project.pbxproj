@@ -37,6 +37,12 @@
 		C1BC99D42B81DB2B0083E181 /* SchduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */; };
 		C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D82B81EB160083E181 /* SectionType.swift */; };
 		C1BC99DC2B81F8B30083E181 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */; };
+		C1BC99DF2B8213AC0083E181 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99DE2B8213AC0083E181 /* DetailTableViewCell.swift */; };
+		C1BC99E12B8213B60083E181 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E02B8213B60083E181 /* DetailViewController.swift */; };
+		C1BC99E32B8214220083E181 /* TitleLists.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E22B8214220083E181 /* TitleLists.swift */; };
+		C1BC99E52B8214ED0083E181 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E42B8214ED0083E181 /* dateFormatter.swift */; };
+		C1BC99E72B8216480083E181 /* DetailSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E62B8216480083E181 /* DetailSectionType.swift */; };
+		C1BC99E92B821F870083E181 /* DetailDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +74,12 @@
 		C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduledTasksTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99D82B81EB160083E181 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
 		C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
+		C1BC99DE2B8213AC0083E181 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99E02B8213B60083E181 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C1BC99E22B8214220083E181 /* TitleLists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleLists.swift; sourceTree = "<group>"; };
+		C1BC99E42B8214ED0083E181 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
+		C1BC99E62B8216480083E181 /* DetailSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionType.swift; sourceTree = "<group>"; };
+		C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDateTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +134,7 @@
 		C1BC998B2B7CD3E70083E181 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99DD2B8213A00083E181 /* Detail */,
 				C1BC99CF2B81DB0C0083E181 /* SchduledTasks */,
 				C1BC99C22B7E2AF30083E181 /* TodayTasks */,
 				C1BC99BF2B7E00DA0083E181 /* AllTasks */,
@@ -168,6 +181,8 @@
 				C1BC99B62B7DFF530083E181 /* RealmModel.swift */,
 				C1BC99CD2B81D4360083E181 /* CollectionViewItem.swift */,
 				C1BC99D82B81EB160083E181 /* SectionType.swift */,
+				C1BC99E22B8214220083E181 /* TitleLists.swift */,
+				C1BC99E62B8216480083E181 /* DetailSectionType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,8 +218,19 @@
 			isa = PBXGroup;
 			children = (
 				C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */,
+				C1BC99E42B8214ED0083E181 /* dateFormatter.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		C1BC99DD2B8213A00083E181 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99E02B8213B60083E181 /* DetailViewController.swift */,
+				C1BC99DE2B8213AC0083E181 /* DetailTableViewCell.swift */,
+				C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,18 +318,24 @@
 			files = (
 				C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */,
 				C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */,
+				C1BC99E72B8216480083E181 /* DetailSectionType.swift in Sources */,
 				C1BC99C62B7E2B110083E181 /* TodayTasksViewController.swift in Sources */,
+				C1BC99E32B8214220083E181 /* TitleLists.swift in Sources */,
+				C1BC99E52B8214ED0083E181 /* dateFormatter.swift in Sources */,
 				C1BC99C42B7E2B060083E181 /* TodayTasksTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
 				C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */,
 				C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */,
+				C1BC99DF2B8213AC0083E181 /* DetailTableViewCell.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99BE2B7E00B30083E181 /* AllTasksListViewController.swift in Sources */,
 				C1BC99D42B81DB2B0083E181 /* SchduledTasksTableViewCell.swift in Sources */,
 				C1BC99B42B7DFB360083E181 /* AddPriorityViewController.swift in Sources */,
 				C1BC99782B7CD30F0083E181 /* ViewController.swift in Sources */,
+				C1BC99E92B821F870083E181 /* DetailDateTableViewCell.swift in Sources */,
 				C1BC99742B7CD30F0083E181 /* AppDelegate.swift in Sources */,
 				C1BC99A22B7D21E60083E181 /* AddTagViewController.swift in Sources */,
+				C1BC99E12B8213B60083E181 /* DetailViewController.swift in Sources */,
 				C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */,
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,

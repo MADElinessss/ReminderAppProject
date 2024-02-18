@@ -30,6 +30,10 @@ final class RealmRepository {
         return realm.objects(ReminderTable.self)
     }
     
+    func fetchItem(by id: ObjectId) -> ReminderTable? {
+        return realm.object(ofType: ReminderTable.self, forPrimaryKey: id)
+    }
+    
     func fetchTodayTasks() -> [ReminderTable] {
         let allTasks = fetchItem("deadline")
         let calendar = Calendar.current
@@ -44,19 +48,6 @@ final class RealmRepository {
         let today = Calendar.current.startOfDay(for: Date())
         return realm.objects(ReminderTable.self).filter("deadline >= %@", today).count
     }
-    
-    // UPDATE
-//    func updateItem(id: ObjectId, money: Int, category: String) {
-//        do {
-//            try realm.write {
-//                realm.create(ReminderTable.self,
-//                             value: ["id": id, "money": money, "favorite": true],
-//                             update: .modified)
-//            }
-//        } catch {
-//            print(error)
-//        }
-//    }
     
     func deleteItem(_ item: ReminderTable) {
         do {
