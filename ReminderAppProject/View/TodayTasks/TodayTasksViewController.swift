@@ -16,6 +16,7 @@ class TodayTasksViewController: BaseViewController {
     
     let titleLabel = UILabel()
     let tableView = UITableView()
+    let realm = try! Realm()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -56,24 +57,24 @@ class TodayTasksViewController: BaseViewController {
 
         // 마감일 순, 제목 순, 우선순위 높음만 보기
         let deadlineSort = UIAction(title: "마감일 순으로 보기") { _ in
-            let realm = try! Realm()
-            self.taskList = realm.objects(ReminderTable.self).where {
+            
+            self.taskList = self.realm.objects(ReminderTable.self).where {
                 $0.deadline == Date()
             }.sorted(byKeyPath: "deadline", ascending: true)
             self.tableView.reloadData()
         }
         
         let titleSort = UIAction(title: "제목 순으로 보기") { _ in
-            let realm = try! Realm()
-            self.taskList = realm.objects(ReminderTable.self).where {
+            
+            self.taskList = self.realm.objects(ReminderTable.self).where {
                 $0.deadline == Date()
             }.sorted(byKeyPath: "title", ascending: true)
             self.tableView.reloadData()
         }
         
         let prioritySort = UIAction(title: "우선순위 높음만 보기") { _ in
-            let realm = try! Realm()
-            self.taskList = realm.objects(ReminderTable.self).where {
+            
+            self.taskList = self.realm.objects(ReminderTable.self).where {
                 $0.priority == "2" &&
                 $0.deadline == Date()
             }.sorted(byKeyPath: "deadline", ascending: true)
@@ -115,5 +116,24 @@ extension TodayTasksViewController: UITableViewDelegate, UITableViewDataSource {
         cell.checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let detail = UIContextualAction(style: .normal, title: "세부사항") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            success(true)
+        }
+        
+        detail.backgroundColor = .listGray
+        
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            try! self.realm.write {
+                self.realm.delete(self.taskList[indexPath.row])
+            }
+            success(true)
+            tableView.reloadData()
+        }
+        delete.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions:[delete, detail])
     }
 }

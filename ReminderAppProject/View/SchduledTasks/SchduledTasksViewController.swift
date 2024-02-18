@@ -22,6 +22,7 @@ class SchduledTasksViewController: BaseViewController {
     
     let titleLabel = UILabel()
     let tableView = UITableView()
+    let realm = try! Realm()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,16 +32,10 @@ class SchduledTasksViewController: BaseViewController {
     }
     
     func fetchScheduledTasks() {
-        let realm = try! Realm()
-        let allTasks = realm.objects(ReminderTable.self)
+        
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
-        
-//        let scheduledTasks = allTasks.filter { task in
-//            let taskDate = calendar.startOfDay(for: task.deadline)
-//            return taskDate >= today
-//        }
-        
+
         taskList = realm.objects(ReminderTable.self).filter("deadline >= %@", today)
         scheduledTasks = Array(taskList)
     }
@@ -101,16 +96,16 @@ class SchduledTasksViewController: BaseViewController {
     }
     
     private func sortTasks(by criterion: SortCriterion) {
-        let realm = try! Realm()
+        
         let today = Calendar.current.startOfDay(for: Date())
         
         switch criterion {
         case .deadline:
-            taskList = realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "deadline", ascending: true)
+            taskList = self.realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "deadline", ascending: true)
         case .title:
-            taskList = realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "title", ascending: true)
+            taskList = self.realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "title", ascending: true)
         case .priority:
-            taskList = realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "priority", ascending: false)
+            taskList = self.realm.objects(ReminderTable.self).filter("deadline >= %@", today).sorted(byKeyPath: "priority", ascending: false)
         }
         scheduledTasks = Array(taskList)
         tableView.reloadData()
@@ -135,5 +130,25 @@ extension SchduledTasksViewController: UITableViewDelegate, UITableViewDataSourc
         cell.checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let detail = UIContextualAction(style: .normal, title: "세부사항") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            success(true)
+        }
+        
+        detail.backgroundColor = .listGray
+        
+        let delete = UIContextualAction(style: .destructive, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            try! self.realm.write {
+                self.realm.delete(self.taskList[indexPath.row])
+            }
+            success(true)
+            self.fetchScheduledTasks()
+            tableView.reloadData()
+        }
+        delete.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions:[delete, detail])
     }
 }
