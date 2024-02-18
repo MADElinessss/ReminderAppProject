@@ -11,7 +11,9 @@ import UIKit
 
 class MainViewController: BaseViewController {
     
+    // 전체 할 일
     var taskList: Results<ReminderTable>!
+    // 오늘 할 일 따로 카운트
     var todayList: Results<ReminderTable>!
     
     let collectionViewLabels = ["오늘", "예정", "전체", "깃발 표시", "완료됨"]
@@ -31,6 +33,7 @@ class MainViewController: BaseViewController {
         todayList = realm.objects(ReminderTable.self).where {
             $0.deadline == Date()
         }
+        
         collectionView.reloadData()
     }
     
@@ -154,13 +157,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if indexPath.item == 0 {
-            let vc = AllTasksListViewController()
-            print("전체 목록 탭")
+            let vc = TodayTasksViewController()
             
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.item == 2 {
             let vc = AllTasksListViewController()
-            print("전체 목록 탭")
             
             navigationController?.pushViewController(vc, animated: true)
         }

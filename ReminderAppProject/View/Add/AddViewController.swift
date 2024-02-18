@@ -11,9 +11,41 @@ import UIKit
 
 let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
 
+enum SectionType {
+    case titleMemo
+    case deadline
+    case tag
+    case priority
+    case imageAdd
+       
+    var cellIdentifier: String {
+        switch self {
+        case .titleMemo:
+            "AddTextFieldTableViewCell"
+        case .deadline:
+            "deadlineCell"
+        case .tag:
+            "tagCell"
+        case .priority:
+            "priorityCell"
+        case .imageAdd:
+            "imageCell"
+        }
+    }
+}
+
+    
 class AddViewController: BaseViewController {
     
     let tableView = UITableView()
+    
+    var sections: [SectionType] = [.titleMemo, .deadline, .tag, .priority, .imageAdd]
+    
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        return formatter
+    }()
     
     var titleText: String = "" {
         didSet {
@@ -91,6 +123,8 @@ class AddViewController: BaseViewController {
             print("CREATE")
         }
         
+        
+        
         dismiss(animated: true)
     }
     
@@ -146,27 +180,27 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = sections[indexPath.section]
+        let cell = tableView.dequeueReusableCell(withIdentifier: section.cellIdentifier, for: indexPath)
         
-        if indexPath.section == 0 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AddTextFieldTableViewCell", for: indexPath) as! AddTextFieldTableViewCell
-            
-            cell.layer.cornerRadius = 10
-            cell.backgroundColor = .listGray
-            cell.selectionStyle = .none
-            
-            cell.titleSender = { value in
-                self.titleText = value
+        switch section {
+        case .titleMemo:
+            if let textFieldCell = cell as? AddTextFieldTableViewCell {
+                textFieldCell.layer.cornerRadius = 10
+                textFieldCell.backgroundColor = .listGray
+                textFieldCell.selectionStyle = .none
+                
+                textFieldCell.titleSender = { value in
+                    self.titleText = value
+                }
+                textFieldCell.memoSender = { value in
+                    self.memoText = value
+                }
+                return textFieldCell
+            } else {
+                return cell
             }
-            cell.memoSender = { value in
-                self.memoText = value
-            }
-            return cell
-            
-        } else if indexPath.section == 1 {
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "deadlineCell", for: indexPath)
-            
+        case .deadline:
             cell.layer.cornerRadius = 10
             if let date = date {
                 cell.textLabel?.text = "\(date)"
@@ -182,11 +216,10 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "tagCell", for: indexPath)
+        case .tag:
             
             cell.layer.cornerRadius = 10
-
+            
             if tagLabel != "" {
                 cell.textLabel?.text = tagLabel
             } else {
@@ -200,9 +233,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        } else if indexPath.section == 3 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "priorityCell", for: indexPath)
-            
+        case .priority:
             cell.layer.cornerRadius = 10
             
             if priority != "" {
@@ -218,9 +249,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             
             return cell
             
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath)
-            
+        case .imageAdd:
             cell.layer.cornerRadius = 10
             cell.textLabel?.text = list[indexPath.section - 1]
             cell.textLabel?.textColor = .white
@@ -234,11 +263,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        
         if indexPath.section == 0 {
-            
-            
             
         } else if indexPath.section == 1 {
             

@@ -71,6 +71,8 @@ class AllTasksTableViewCell: UITableViewCell {
             checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         } else {
             checkBox.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+            
+            // TODO: 완료됨으로 처리 후 뷰 reload
         }
     }
 }

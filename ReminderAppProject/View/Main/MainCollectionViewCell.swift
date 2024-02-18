@@ -30,20 +30,20 @@ class MainCollectionViewCell: BaseCollectionViewCell {
     
     override func configureLayout() {
         iconImageView.snp.makeConstraints { make in
-            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(titleLabel.snp.top)
             make.width.height.equalTo(36)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(8)
-            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.top.equalTo(iconImageView.snp.bottom).offset(16)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).inset(16)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(4)
         }
         
         taskCount.snp.makeConstraints { make in
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(8)
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(8)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).inset(4)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(12)
             make.width.height.equalTo(36)
         }
     }
@@ -64,6 +64,7 @@ class MainCollectionViewCell: BaseCollectionViewCell {
         iconImageView.tintColor = .white
         iconImageView.clipsToBounds = true
         iconImageView.layer.cornerRadius = 15
+        iconImageView.contentMode = .scaleToFill
         
         titleLabel.text = "오늘"
         titleLabel.textColor = .lightGray
@@ -73,8 +74,4 @@ class MainCollectionViewCell: BaseCollectionViewCell {
         taskCount.textColor = .white
         taskCount.font = .systemFont(ofSize: 24, weight: .bold)
     }
-}
-
-#Preview {
-    MainCollectionViewCell()
 }
