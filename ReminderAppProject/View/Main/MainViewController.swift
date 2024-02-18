@@ -9,51 +9,12 @@ import RealmSwift
 import SnapKit
 import UIKit
 
-enum CollectionViewItem: Int, CaseIterable {
-    case today
-    case scheduled
-    case all
-    case flagged
-    case completed
-    
-    var title: String {
-        switch self {
-        case .today: return "오늘"
-        case .scheduled: return "예정"
-        case .all: return "전체"
-        case .flagged: return "깃발 표시"
-        case .completed: return "완료됨"
-        }
-    }
-    
-    var iconName: String {
-        switch self {
-        case .today: return "calendar.badge.checkmark"
-        case .scheduled: return "calendar"
-        case .all: return "tray.fill"
-        case .flagged: return "flag.fill"
-        case .completed: return "checkmark"
-        }
-    }
-    var backgroundColor: UIColor {
-        switch self {
-        case .today: return .systemBlue
-        case .scheduled: return .systemRed
-        case .all, .completed: return .gray
-        case .flagged: return .orange
-        }
-    }
-}
 
 class MainViewController: BaseViewController {
     
     // 전체 할 일
     var taskList: Results<ReminderTable>!
-    // 오늘 할 일 따로 카운트
-    var todayList: Results<ReminderTable>!
-    
-    let collectionViewLabels = ["오늘", "예정", "전체", "깃발 표시", "완료됨"]
-    let collectionViewIcons = ["calendar.badge.checkmark", "calendar", "tray.fill", "flag.fill", "checkmark"]
+    var todayList: [ReminderTable] = []
     
     let moreButton = UIButton()
     let titleLabel = UILabel()
@@ -63,24 +24,28 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = false
         
-        // TODO: 전체 할일 개수 바로 반영안됨
         let realm = try! Realm()
         taskList = realm.objects(ReminderTable.self)
-        todayList = realm.objects(ReminderTable.self).where {
-            $0.deadline == Date()
+        let allTasks = realm.objects(ReminderTable.self)
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        self.todayList = allTasks.filter { task in
+            let taskDate = calendar.startOfDay(for: task.deadline)
+            return taskDate == today
         }
+
+        self.todayList = Array(self.todayList)
         
         collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print("did appear")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
-        print("did load")
     }
     
     override func configureHeirarchy() {
@@ -120,7 +85,6 @@ class MainViewController: BaseViewController {
         titleLabel.font = .systemFont(ofSize: 32, weight: .semibold)
         titleLabel.textColor = .gray
         
-        // TODO: customView 만들기
         self.navigationController?.toolbar.barTintColor = .systemBlue
         let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
         
