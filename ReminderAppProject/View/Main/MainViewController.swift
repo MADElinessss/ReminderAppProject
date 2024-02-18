@@ -9,6 +9,42 @@ import RealmSwift
 import SnapKit
 import UIKit
 
+enum CollectionViewItem: Int, CaseIterable {
+    case today
+    case scheduled
+    case all
+    case flagged
+    case completed
+    
+    var title: String {
+        switch self {
+        case .today: return "오늘"
+        case .scheduled: return "예정"
+        case .all: return "전체"
+        case .flagged: return "깃발 표시"
+        case .completed: return "완료됨"
+        }
+    }
+    
+    var iconName: String {
+        switch self {
+        case .today: return "calendar.badge.checkmark"
+        case .scheduled: return "calendar"
+        case .all: return "tray.fill"
+        case .flagged: return "flag.fill"
+        case .completed: return "checkmark"
+        }
+    }
+    var backgroundColor: UIColor {
+        switch self {
+        case .today: return .systemBlue
+        case .scheduled: return .systemRed
+        case .all, .completed: return .gray
+        case .flagged: return .orange
+        }
+    }
+}
+
 class MainViewController: BaseViewController {
     
     // 전체 할 일
@@ -87,7 +123,7 @@ class MainViewController: BaseViewController {
         // TODO: customView 만들기
         self.navigationController?.toolbar.barTintColor = .systemBlue
         let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
-
+        
         let newTaskLabel = UIBarButtonItem(title: "새로운 할 일", style: .plain, target: self, action: #selector(newTaskButtonTapped))
         
         newTaskButton.tintColor = .systemBlue
@@ -124,31 +160,34 @@ class MainViewController: BaseViewController {
         
         return layout
     }
-
+    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return CollectionViewItem.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as! MainCollectionViewCell
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MainCollectionViewCell", for: indexPath) as? MainCollectionViewCell,
+              let item = CollectionViewItem(rawValue: indexPath.item) else {
+            return UICollectionViewCell()
+        }
+        
         cell.layer.cornerRadius = 15
-        cell.titleLabel.text = collectionViewLabels[indexPath.item]
-        cell.iconImageView.image = UIImage(systemName: collectionViewIcons[indexPath.item])
-        if indexPath.item == 0 {
-            cell.iconImageView.backgroundColor = .systemBlue
+        cell.titleLabel.text = item.title
+        cell.iconImageView.image = UIImage(systemName: item.iconName)
+        cell.iconImageView.backgroundColor = item.backgroundColor
+        
+        // 오늘과 전체 태스크 카운트 설정
+        switch item {
+        case .today:
             cell.taskCount.text = "\(todayList.count)"
-        } else if indexPath.item == 1 {
-            cell.iconImageView.backgroundColor = .systemRed
-        } else if indexPath.item == 2 {
-            cell.iconImageView.backgroundColor = .gray
+        case .all:
             cell.taskCount.text = "\(taskList.count)"
-        } else if indexPath.item == 3 {
-            cell.iconImageView.backgroundColor = .orange
-        } else {
-            cell.iconImageView.backgroundColor = .gray
+        default:
+            cell.taskCount.text = ""
         }
         
         return cell
@@ -156,17 +195,20 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.item == 0 {
+        guard let item = CollectionViewItem(rawValue: indexPath.item) else { return }
+        
+        switch item {
+        case .today:
             let vc = TodayTasksViewController()
-            
             navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.item == 2 {
+        case .all:
             let vc = AllTasksListViewController()
-            
             navigationController?.pushViewController(vc, animated: true)
+        default:
+            break // 다른 아이템에 대한 처리
         }
     }
-
+    
 }
 
 #Preview {
