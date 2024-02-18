@@ -27,35 +27,39 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = false
         
-        let realm = try! Realm()
-        taskList = realm.objects(ReminderTable.self)
-        let allTasks = realm.objects(ReminderTable.self)
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        
-        self.todayList = allTasks.filter { task in
-            let taskDate = calendar.startOfDay(for: task.deadline)
-            return taskDate == today
-        }
-        
-        let scheduledTasks = allTasks.filter { task in
-            let taskDate = calendar.startOfDay(for: task.deadline)
-            return taskDate >= today
-        }
-        
-        scheduledCount = scheduledTasks.count
-        
-        self.todayList = Array(self.todayList)
-        
-        collectionView.reloadData()
+        fetchDataAndUpdateUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+        // AddViewController에서 추가 버튼 누를 때 실행
+        NotificationCenter.default.addObserver(self, selector: #selector(taskAddedNotificationReceived), name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func taskAddedNotificationReceived() {
+        // count reload
+        fetchDataAndUpdateUI()
+    }
+    
+    private func fetchDataAndUpdateUI() {
+        let realm = try! Realm()
+        taskList = realm.objects(ReminderTable.self)
+        let allTasks = realm.objects(ReminderTable.self)
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        todayList = Array(allTasks.filter { calendar.startOfDay(for: $0.deadline) == today })
+        scheduledCount = allTasks.filter { calendar.startOfDay(for: $0.deadline) >= today }.count
+        collectionView.reloadData()
     }
     
     override func configureHeirarchy() {
@@ -134,7 +138,6 @@ class MainViewController: BaseViewController {
         
         return layout
     }
-    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -184,7 +187,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             let vc = SchduledTasksViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:
-            break // 다른 아이템에 대한 처리
+            break
         }
     }
     

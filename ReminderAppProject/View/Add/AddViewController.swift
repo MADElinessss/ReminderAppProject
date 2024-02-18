@@ -98,6 +98,7 @@ class AddViewController: BaseViewController {
         
         try! realm.write {
             realm.add(data)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
             self.dismiss(animated: true)
         }
     }
