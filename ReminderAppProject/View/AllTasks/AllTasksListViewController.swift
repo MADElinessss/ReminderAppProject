@@ -11,6 +11,12 @@ import UIKit
 
 class AllTasksListViewController: BaseViewController {
     
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        return formatter
+    }()
+    
     let repository = RealmRepository()
     var taskList: Results<ReminderTable>!
 
@@ -91,7 +97,7 @@ class AllTasksListViewController: BaseViewController {
 extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 60
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskList.count
@@ -100,8 +106,20 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllTasksTableViewCell", for: indexPath) as! AllTasksTableViewCell
         
-        cell.taskTitle.text = taskList[indexPath.row].title
-        cell.taskMemo.text = taskList[indexPath.row].memo
+        let task = taskList[indexPath.row]
+        cell.taskTitle.text = task.title
+        cell.taskMemo.text = task.memo
+        
+        if let date = task.deadline {
+            let dateToString = dateFormatter.string(from: date)
+            cell.dateLabel.text = dateToString
+        } else {
+            cell.dateLabel.text = ""
+        }
+        
+        if !task.tag.isEmpty {
+            cell.tagLabel.text = "#\(task.tag)"
+        }
         
         cell.checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         

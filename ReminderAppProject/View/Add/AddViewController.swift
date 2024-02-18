@@ -93,10 +93,9 @@ class AddViewController: BaseViewController {
         
         navigationItem.rightBarButtonItem?.isEnabled = true
         
-        let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
+        let data = ReminderTable(title: titleText, memo: memoText, deadline: date, tag: tagLabel, priority: priority)
         
         repository.createItem(data)
-        print(data)
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
         self.dismiss(animated: true)

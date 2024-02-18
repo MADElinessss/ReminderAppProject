@@ -38,6 +38,7 @@ class SchduledTasksViewController: BaseViewController {
         let today = calendar.startOfDay(for: Date())
 
         taskList = realm.objects(ReminderTable.self).filter("deadline >= %@", today)
+        
         scheduledTasks = Array(taskList)
     }
     

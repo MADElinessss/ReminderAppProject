@@ -53,15 +53,12 @@ class MainViewController: BaseViewController {
     }
     
     private func fetchDataAndUpdateUI() {
-        
         // READ
         taskList = repository.fetchItem("deadline")
-        let allTasks = repository.fetchItem("deadline")
         
-        let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        todayList = Array(allTasks.filter { calendar.startOfDay(for: $0.deadline) == today })
-        scheduledCount = allTasks.filter { calendar.startOfDay(for: $0.deadline) >= today }.count
+        todayList = repository.fetchTodayTasks()
+        scheduledCount = repository.countScheduledTasks()
+        
         collectionView.reloadData()
     }
     

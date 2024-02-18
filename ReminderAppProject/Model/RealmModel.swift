@@ -14,11 +14,11 @@ class ReminderTable: Object {
     
     @Persisted var title: String
     @Persisted var memo: String
-    @Persisted var deadline: Date
+    @Persisted var deadline: Date?
     @Persisted var tag: String
     @Persisted var priority: String
     
-    convenience init(title: String, memo: String, deadline: Date, tag: String, priority: String) {
+    convenience init(title: String, memo: String, deadline: Date?, tag: String, priority: String) {
         self.init()
         self.title = title
         self.memo = memo
