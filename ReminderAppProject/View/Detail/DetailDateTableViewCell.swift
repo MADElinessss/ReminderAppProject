@@ -33,40 +33,73 @@ class DetailDateTableViewCell: UITableViewCell {
         contentView.addSubview(separatorLine)
         contentView.addSubview(datePicker)
         contentView.addSubview(timePicker)
+
+        dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).offset(16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+        }
         
-//        dateLabel.snp.makeConstraints { make in
-//            make.leading.equalTo(<#T##other: ConstraintRelatableTarget##ConstraintRelatableTarget#>)
-//        }
+        datePicker.snp.makeConstraints { make in
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(4)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+        }
         
+        separatorLine.snp.makeConstraints { make in
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(16)
+            make.trailing.equalTo(contentView)
+            make.centerY.equalTo(contentView)
+            make.height.equalTo(0.5)
+        }
+        
+        timeLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).offset(16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+            make.bottom.equalTo(contentView)
+        }
+        
+        timePicker.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(4)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-16)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+        }
+        
+        separatorLine.backgroundColor = .darkGray
         
         dateLabel.text = "날짜"
+        dateLabel.textColor = .white
         timeLabel.text = "시간"
+        timeLabel.textColor = .white
         
-        // datePicker 설정
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
         
         timePicker.datePickerMode = .time
         timePicker.addTarget(self, action: #selector(timePickerChanged(picker:)), for: .valueChanged)
-        
     }
 
     @objc func datePickerChanged(picker: UIDatePicker) {
-        // 날짜와 시간 레이블 업데이트
         let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .none
         
-        dateLabel.text = dateFormatter.string(from: picker.date)
+//        dateLabel.text = dateFormatter.string(from: picker.date)
     }
     
     @objc func timePickerChanged(picker: UIDatePicker) {
-        // 날짜와 시간 레이블 업데이트
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateStyle = .none
         dateFormatter.timeStyle = .short
         
-        dateLabel.text = dateFormatter.string(from: picker.date)
+//        dateLabel.text = dateFormatter.string(from: picker.date)
     }
 
+}
+
+#Preview {
+    DetailDateTableViewCell()
 }

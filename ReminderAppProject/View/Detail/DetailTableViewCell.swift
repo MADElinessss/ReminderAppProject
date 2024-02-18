@@ -57,7 +57,6 @@ class DetailTableViewCell: UITableViewCell {
         }
         
         separatorLine.backgroundColor = .darkGray
-        separatorLine.translatesAutoresizingMaskIntoConstraints = false
         
         titleTextField.backgroundColor = .listGray
         titleTextField.textColor = .white

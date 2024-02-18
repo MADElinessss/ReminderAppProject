@@ -133,26 +133,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.memoTextField.text = task.memo
             }
             
-//            let task = taskList[indexPath.row]
-//            
-//            cell.titleTextField.text = task.title
-//            cell.memoTextField.text = task.memo
-            
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DetailDateTableViewCell", for: indexPath) as! DetailDateTableViewCell
             cell.layer.cornerRadius = 15
             cell.backgroundColor = .listGray
             cell.selectionStyle = .default
-            
-            if let task = task, let deadline = task.deadline {
-                // 날짜 포맷을 설정합니다.
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy.MM.dd"
-                // 셀에 날짜를 표시합니다.
-                cell.dateLabel.text = dateFormatter.string(from: deadline)
-                // 시간 정보도 여기서 설정할 수 있습니다.
-            }
             
             return cell
         } else {
