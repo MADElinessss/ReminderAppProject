@@ -116,16 +116,38 @@ class AddViewController: BaseViewController {
         
         // print(realm.configuration.fileURL)
         
-        let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
-        
-        try! realm.write {
-            realm.add(data)
-            print("CREATE")
+        if titleText.isEmpty {
+            
+            showAlert(title: "제목을 입력해주세요.", message: "제목을 입력해주세요.", ok: "확인") {
+                self.dismiss(animated: true)
+            }
+        } else {
+            let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
+            
+            try! realm.write {
+                realm.add(data)
+                self.dismiss(animated: true)
+            }
         }
         
+    }
+    
+    func showAlert(
+        title: String,
+        message: String,
+        ok: String,
+        handler: @escaping (() -> Void)  
+    ) {
         
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let ok = UIAlertAction(title: ok, style: .default) { _ in
+            handler()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
         
-        dismiss(animated: true)
     }
     
     override func configureView() {
@@ -148,7 +170,6 @@ class AddViewController: BaseViewController {
         
         tableView.backgroundColor = .buttonGray
     }
-
 }
 
 extension AddViewController: UITableViewDelegate, UITableViewDataSource {
