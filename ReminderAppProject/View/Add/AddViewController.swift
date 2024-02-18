@@ -14,6 +14,7 @@ let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
 class AddViewController: BaseViewController {
     
     let tableView = UITableView()
+    let repository = RealmRepository()
     
     var sections: [SectionType] = [.titleMemo, .deadline, .tag, .priority, .imageAdd]
     
@@ -87,20 +88,18 @@ class AddViewController: BaseViewController {
     }
 
     @objc func saveButtonTapped() {
-        
-        let realm = try! Realm()
-        
+
         // print(realm.configuration.fileURL)
         
         navigationItem.rightBarButtonItem?.isEnabled = true
         
         let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
         
-        try! realm.write {
-            realm.add(data)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
-            self.dismiss(animated: true)
-        }
+        repository.createItem(data)
+        print(data)
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
+        self.dismiss(animated: true)
     }
     
     override func configureView() {

@@ -11,6 +11,7 @@ import UIKit
 
 class AllTasksListViewController: BaseViewController {
     
+    let repository = RealmRepository()
     var taskList: Results<ReminderTable>!
 
     let titleLabel = UILabel()

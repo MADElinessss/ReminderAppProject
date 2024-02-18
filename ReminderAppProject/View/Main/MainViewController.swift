@@ -18,6 +18,7 @@ class MainViewController: BaseViewController {
     var todayList: [ReminderTable] = []
     // 예정된 할 일
     var scheduledCount: Int = 0
+    let repository = RealmRepository()
     
     let moreButton = UIButton()
     let titleLabel = UILabel()
@@ -52,9 +53,11 @@ class MainViewController: BaseViewController {
     }
     
     private func fetchDataAndUpdateUI() {
-        let realm = try! Realm()
-        taskList = realm.objects(ReminderTable.self)
-        let allTasks = realm.objects(ReminderTable.self)
+        
+        // READ
+        taskList = repository.fetchItem("deadline")
+        let allTasks = repository.fetchItem("deadline")
+        
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         todayList = Array(allTasks.filter { calendar.startOfDay(for: $0.deadline) == today })
@@ -113,7 +116,7 @@ class MainViewController: BaseViewController {
     }
     
     @objc func moreButtonTapped() {
-        print("moreButtonTapped")
+        
     }
     
     @objc func newTaskButtonTapped() {

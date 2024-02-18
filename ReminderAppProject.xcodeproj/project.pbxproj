@@ -36,6 +36,7 @@
 		C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D12B81DB1E0083E181 /* SchduledTasksViewController.swift */; };
 		C1BC99D42B81DB2B0083E181 /* SchduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */; };
 		C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D82B81EB160083E181 /* SectionType.swift */; };
+		C1BC99DC2B81F8B30083E181 /* RealmRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		C1BC99D12B81DB1E0083E181 /* SchduledTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduledTasksViewController.swift; sourceTree = "<group>"; };
 		C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduledTasksTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99D82B81EB160083E181 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
+		C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		C1BC99722B7CD30F0083E181 /* ReminderAppProject */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99DA2B81F8A20083E181 /* Manager */,
 				C1BC99B52B7DFF490083E181 /* Model */,
 				C1BC998B2B7CD3E70083E181 /* View */,
 				C1BC99732B7CD30F0083E181 /* AppDelegate.swift */,
@@ -194,6 +197,14 @@
 				C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */,
 			);
 			path = SchduledTasks;
+			sourceTree = "<group>";
+		};
+		C1BC99DA2B81F8A20083E181 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99DB2B81F8B30083E181 /* RealmRepository.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +307,7 @@
 				C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */,
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
+				C1BC99DC2B81F8B30083E181 /* RealmRepository.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
 				C1BC99C12B7E14C50083E181 /* AllTasksTableViewCell.swift in Sources */,
 				C1BC99B72B7DFF530083E181 /* RealmModel.swift in Sources */,
