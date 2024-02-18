@@ -10,6 +10,8 @@ import UIKit
 
 class AddTextFieldTableViewCell: UITableViewCell {
 
+    var textFieldDidChangeHandler: ((String?) -> Void)?
+
     var titleSender: ((String) -> Void)?
     var memoSender: ((String) -> Void)?
     
@@ -47,12 +49,16 @@ class AddTextFieldTableViewCell: UITableViewCell {
         titleTextField.backgroundColor = .listGray
         titleTextField.attributedPlaceholder = NSAttributedString(string: "제목", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray.cgColor])
         titleTextField.addTarget(self, action: #selector(titleTextFieldEndEditing), for: .editingDidEnd)
+        titleTextField.addTarget(self, action: #selector(titleTextDidChanged), for: .editingChanged)
         
         memoTextField.backgroundColor = .listGray
         memoTextField.attributedPlaceholder = NSAttributedString(string: "메모", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray.cgColor])
         memoTextField.addTarget(self, action: #selector(memoTextFieldEndEditing), for: .editingDidEnd)
     }
     
+    @objc func titleTextDidChanged() {
+        textFieldDidChangeHandler?(titleTextField.text)
+    }
     @objc func titleTextFieldEndEditing() {
         titleSender?(titleTextField.text ?? "")
     }

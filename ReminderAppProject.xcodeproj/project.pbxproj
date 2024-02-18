@@ -35,6 +35,7 @@
 		C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99CD2B81D4360083E181 /* CollectionViewItem.swift */; };
 		C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D12B81DB1E0083E181 /* SchduledTasksViewController.swift */; };
 		C1BC99D42B81DB2B0083E181 /* SchduledTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */; };
+		C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99D82B81EB160083E181 /* SectionType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		C1BC99CD2B81D4360083E181 /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
 		C1BC99D12B81DB1E0083E181 /* SchduledTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduledTasksViewController.swift; sourceTree = "<group>"; };
 		C1BC99D32B81DB2B0083E181 /* SchduledTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchduledTasksTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99D82B81EB160083E181 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				C1BC99B62B7DFF530083E181 /* RealmModel.swift */,
 				C1BC99CD2B81D4360083E181 /* CollectionViewItem.swift */,
+				C1BC99D82B81EB160083E181 /* SectionType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				C1BC99C62B7E2B110083E181 /* TodayTasksViewController.swift in Sources */,
 				C1BC99C42B7E2B060083E181 /* TodayTasksTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
+				C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */,
 				C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99BE2B7E00B30083E181 /* AllTasksListViewController.swift in Sources */,

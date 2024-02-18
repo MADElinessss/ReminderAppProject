@@ -11,30 +11,6 @@ import UIKit
 
 let list = ["마감일", "태그", "우선 순위", "이미지 추가"]
 
-enum SectionType {
-    case titleMemo
-    case deadline
-    case tag
-    case priority
-    case imageAdd
-       
-    var cellIdentifier: String {
-        switch self {
-        case .titleMemo:
-            "AddTextFieldTableViewCell"
-        case .deadline:
-            "deadlineCell"
-        case .tag:
-            "tagCell"
-        case .priority:
-            "priorityCell"
-        case .imageAdd:
-            "imageCell"
-        }
-    }
-}
-
-    
 class AddViewController: BaseViewController {
     
     let tableView = UITableView()
@@ -99,6 +75,7 @@ class AddViewController: BaseViewController {
         let rightItem = UIBarButtonItem(title: "추가", style: .done, target: self, action: #selector(saveButtonTapped))
         navigationItem.rightBarButtonItem = rightItem
         rightItem.tintColor = .systemBlue
+        rightItem.isEnabled = false
         
         
         navigationItem.title = "새로운 할 일"
@@ -111,43 +88,18 @@ class AddViewController: BaseViewController {
 
     @objc func saveButtonTapped() {
         
-        // TODO: 값 전달
         let realm = try! Realm()
         
         // print(realm.configuration.fileURL)
         
-        if titleText.isEmpty {
-            
-            showAlert(title: "제목을 입력해주세요.", message: "제목을 입력해주세요.", ok: "확인") {
-                self.dismiss(animated: true)
-            }
-        } else {
-            let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
-            
-            try! realm.write {
-                realm.add(data)
-                self.dismiss(animated: true)
-            }
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        
+        let data = ReminderTable(title: titleText, memo: memoText, deadline: date ?? Date(), tag: tagLabel, priority: priority)
+        
+        try! realm.write {
+            realm.add(data)
+            self.dismiss(animated: true)
         }
-        
-    }
-    
-    func showAlert(
-        title: String,
-        message: String,
-        ok: String,
-        handler: @escaping (() -> Void)  
-    ) {
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: ok, style: .default) { _ in
-            handler()
-        }
-        let cancel = UIAlertAction(title: "취소", style: .cancel)
-        alert.addAction(ok)
-        alert.addAction(cancel)
-        present(alert, animated: true)
-        
     }
     
     override func configureView() {
@@ -169,6 +121,7 @@ class AddViewController: BaseViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "imageCell")
         
         tableView.backgroundColor = .buttonGray
+        
     }
 }
 
@@ -216,6 +169,10 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 textFieldCell.memoSender = { value in
                     self.memoText = value
+                }
+                
+                textFieldCell.textFieldDidChangeHandler = { [weak self] text in
+                    self?.navigationItem.rightBarButtonItem?.isEnabled = !(text?.isEmpty ?? true)
                 }
                 return textFieldCell
             } else {
