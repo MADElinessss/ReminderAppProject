@@ -13,6 +13,7 @@ import UIKit
 class TodayTasksViewController: BaseViewController {
     
     var taskList: Results<ReminderTable>!
+    let repository = RealmRepository()
     
     let titleLabel = UILabel()
     let tableView = UITableView()
@@ -126,9 +127,7 @@ extension TodayTasksViewController: UITableViewDelegate, UITableViewDataSource {
         detail.backgroundColor = .listGray
         
         let delete = UIContextualAction(style: .destructive, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            try! self.realm.write {
-                self.realm.delete(self.taskList[indexPath.row])
-            }
+            self.repository.deleteItem(self.taskList[indexPath.row])
             success(true)
             tableView.reloadData()
         }

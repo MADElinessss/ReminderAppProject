@@ -19,6 +19,7 @@ class SchduledTasksViewController: BaseViewController {
     // MARK: 예정된 할 일
     var taskList: Results<ReminderTable>!
     var scheduledTasks: [ReminderTable] = []
+    let repository = RealmRepository()
     
     let titleLabel = UILabel()
     let tableView = UITableView()
@@ -140,9 +141,7 @@ extension SchduledTasksViewController: UITableViewDelegate, UITableViewDataSourc
         detail.backgroundColor = .listGray
         
         let delete = UIContextualAction(style: .destructive, title: "삭제") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            try! self.realm.write {
-                self.realm.delete(self.taskList[indexPath.row])
-            }
+            self.repository.deleteItem(self.taskList[indexPath.row])
             success(true)
             self.fetchScheduledTasks()
             tableView.reloadData()

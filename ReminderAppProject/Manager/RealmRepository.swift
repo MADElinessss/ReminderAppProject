@@ -42,4 +42,14 @@ final class RealmRepository {
             print(error)
         }
     }
+    
+    func deleteItem(_ item: ReminderTable) {
+        do {
+            try realm.write {
+                realm.delete(item)
+            }
+        } catch {
+            print(error)
+        }
+    }
 }
