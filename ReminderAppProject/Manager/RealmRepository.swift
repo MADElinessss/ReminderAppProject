@@ -18,7 +18,6 @@ final class RealmRepository {
         do {
             try realm.write {
                 realm.add(item)
-                print("CREATED")
             }
         } catch {
             print(error)

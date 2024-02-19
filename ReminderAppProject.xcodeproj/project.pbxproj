@@ -43,6 +43,7 @@
 		C1BC99E52B8214ED0083E181 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E42B8214ED0083E181 /* dateFormatter.swift */; };
 		C1BC99E72B8216480083E181 /* DetailSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E62B8216480083E181 /* DetailSectionType.swift */; };
 		C1BC99E92B821F870083E181 /* DetailDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */; };
+		C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		C1BC99E42B8214ED0083E181 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
 		C1BC99E62B8216480083E181 /* DetailSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionType.swift; sourceTree = "<group>"; };
 		C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDateTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		C1BC998B2B7CD3E70083E181 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99ED2B83A2660083E181 /* Calendar */,
 				C1BC99DD2B8213A00083E181 /* Detail */,
 				C1BC99CF2B81DB0C0083E181 /* SchduledTasks */,
 				C1BC99C22B7E2AF30083E181 /* TodayTasks */,
@@ -231,6 +234,14 @@
 				C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		C1BC99ED2B83A2660083E181 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +350,7 @@
 				C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */,
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
+				C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */,
 				C1BC99DC2B81F8B30083E181 /* RealmRepository.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
 				C1BC99C12B7E14C50083E181 /* AllTasksTableViewCell.swift in Sources */,

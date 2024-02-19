@@ -88,6 +88,8 @@ class MainViewController: BaseViewController {
     
     override func configureView() {
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "calendar.circle"), style: .plain, target: self, action: #selector(calendarButtonTapped))
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(moreButtonTapped))
         
         collectionView.delegate = self
@@ -114,6 +116,13 @@ class MainViewController: BaseViewController {
     
     @objc func moreButtonTapped() {
         
+    }
+    
+    @objc func calendarButtonTapped() {
+        // TODO: 캘린더 뷰 띄우기
+        let addVC = CalendarViewController()
+        let navController = UINavigationController(rootViewController: addVC)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc func newTaskButtonTapped() {

@@ -79,7 +79,7 @@ class AllTasksListViewController: BaseViewController {
         
         titleLabel.text = "전체"
         titleLabel.font = .systemFont(ofSize: 32, weight: .semibold)
-        titleLabel.textColor = .gray
+        titleLabel.textColor = .systemBlue
         
         tableView.delegate = self
         tableView.dataSource = self
