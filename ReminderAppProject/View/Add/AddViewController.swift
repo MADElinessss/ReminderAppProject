@@ -146,7 +146,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         let cell = tableView.dequeueReusableCell(withIdentifier: section.cellIdentifier, for: indexPath)
-        
+        cell.selectionStyle = .none
         switch section {
         case .titleMemo:
             if let textFieldCell = cell as? AddTextFieldTableViewCell {
@@ -171,7 +171,10 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         case .deadline:
             cell.layer.cornerRadius = 10
             if let date = date {
-                cell.textLabel?.text = "\(date)"
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy년 MM월 dd일 hh:mm"
+                let dateString = dateFormatter.string(from: date)
+                cell.textLabel?.text = dateString
             } else {
                 cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             }
@@ -240,8 +243,9 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             vc.deadlineSender = { newValue in
                 
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+                dateFormatter.dateFormat = "yyyy년 MM월 dd일"
                 self.deadlineLabel = dateFormatter.string(from: newValue)
+                print(self.deadlineLabel)
                 self.date = newValue
                 
                 vc.date = newValue

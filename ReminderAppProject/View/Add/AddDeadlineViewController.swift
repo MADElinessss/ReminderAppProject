@@ -33,7 +33,8 @@ class AddDeadlineViewController: BaseViewController {
     
     override func configureConstraints() {
         datePicker.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(44)
         }
     }
     
@@ -45,8 +46,10 @@ class AddDeadlineViewController: BaseViewController {
         }
         
         datePicker.datePickerMode = .dateAndTime
-        datePicker.backgroundColor = .listGray
+        datePicker.tintColor = .systemBlue
+        datePicker.backgroundColor = .buttonGray
         datePicker.timeZone = TimeZone(identifier: "Asia/Seoul")
+        datePicker.locale = Locale(identifier: "ko_KR")
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
     }
     

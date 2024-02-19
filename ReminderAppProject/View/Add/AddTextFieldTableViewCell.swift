@@ -46,11 +46,13 @@ class AddTextFieldTableViewCell: UITableViewCell {
             make.bottom.equalTo(contentView)
         }
         
+        titleTextField.textColor = .white
         titleTextField.backgroundColor = .listGray
         titleTextField.attributedPlaceholder = NSAttributedString(string: "제목", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray.cgColor])
         titleTextField.addTarget(self, action: #selector(titleTextFieldEndEditing), for: .editingDidEnd)
         titleTextField.addTarget(self, action: #selector(titleTextDidChanged), for: .editingChanged)
         
+        memoTextField.textColor = .white
         memoTextField.backgroundColor = .listGray
         memoTextField.attributedPlaceholder = NSAttributedString(string: "메모", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray.cgColor])
         memoTextField.addTarget(self, action: #selector(memoTextFieldEndEditing), for: .editingDidEnd)

@@ -64,7 +64,7 @@ class CalendarViewController: BaseViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "mainCell")
         tableView.backgroundColor = .buttonGray
         
-        navigationItem.title = "캘린더"
+        navigationItem.title = "🗓️"
         navigationItem.titleView?.tintColor = .white
         
         let rightitem = UIBarButtonItem(title: "TODAY", style: .plain, target: self, action: #selector(todayBarButtonItemTapped))
@@ -73,8 +73,9 @@ class CalendarViewController: BaseViewController {
         let leftitem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationItem.leftBarButtonItem = leftitem
         
-        // MARK: 데이터베이스 필터 기능 추가
-        
+        calendar.appearance.titleDefaultColor = .white
+        calendar.appearance.titleWeekendColor = .white
+        calendar.appearance.headerTitleColor = .white
         
     }
     
@@ -103,6 +104,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell")!
         let row = list[indexPath.row]
         
+        cell.tintColor = .white
         cell.backgroundColor = .buttonGray
         cell.textLabel?.text = "✅ \(row.title) \(row.memo)"
         cell.textLabel?.textColor = .white

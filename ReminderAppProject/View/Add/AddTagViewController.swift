@@ -33,14 +33,21 @@ class AddTagViewController: BaseViewController {
     override func configureConstraints() {
         tagTextField.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.height.equalTo(44)
         }
     }
     
     override func configureView() {
-        tagTextField.placeholder = "태그를 입력해주세요. 🏷️"
-        tagTextField.backgroundColor = .lightGray
+        
+        tagTextField.attributedPlaceholder = NSAttributedString(
+            string: "태그를 입력해주세요. 🏷️",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
+        tagTextField.clipsToBounds = true
+        tagTextField.layer.cornerRadius = 5
+        tagTextField.backgroundColor = .listGray
+        tagTextField.textColor = .white
         tagTextField.borderStyle = .none
     }
 }
