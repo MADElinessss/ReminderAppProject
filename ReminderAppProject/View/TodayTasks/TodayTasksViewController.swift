@@ -102,7 +102,7 @@ class TodayTasksViewController: BaseViewController {
 
 extension TodayTasksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return 60
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskList.count
@@ -111,8 +111,20 @@ extension TodayTasksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TodayTasksTableViewCell", for: indexPath) as! TodayTasksTableViewCell
         
-        cell.taskTitle.text = taskList[indexPath.row].title
-        cell.taskMemo.text = taskList[indexPath.row].memo
+        let task = taskList[indexPath.row]
+        cell.taskTitle.text = task.title
+        cell.taskMemo.text = task.memo
+        
+        if let date = task.deadline {
+            let dateToString = dateFormatter.string(from: date)
+            cell.dateLabel.text = dateToString
+        } else {
+            cell.dateLabel.text = ""
+        }
+        
+        if !task.tag.isEmpty {
+            cell.tagLabel.text = "#\(task.tag)"
+        }
         
         cell.checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
         

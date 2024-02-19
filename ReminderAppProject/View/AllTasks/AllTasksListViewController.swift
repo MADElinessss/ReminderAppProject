@@ -11,12 +11,6 @@ import UIKit
 
 class AllTasksListViewController: BaseViewController {
     
-    let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy.MM.dd"
-        return formatter
-    }()
-    
     let repository = RealmRepository()
     var taskList: Results<ReminderTable>!
 
