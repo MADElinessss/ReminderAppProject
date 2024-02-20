@@ -53,6 +53,12 @@ class AddViewController: BaseViewController {
         }
     }
     
+    var cellImage: UIImage? = UIImage(systemName: "photo.fill") {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,16 +86,20 @@ class AddViewController: BaseViewController {
     }
 
     @objc func saveButtonTapped() {
-
-        // print(realm.configuration.fileURL)
-        
         navigationItem.rightBarButtonItem?.isEnabled = true
         
         let data = ReminderTable(title: titleText, memo: memoText, deadline: date, tag: tagLabel, priority: priority)
         
         repository.createItem(data)
         
+        if let image = cellImage {
+            if cellImage != UIImage(systemName: "photo.fill") {
+                saveImageToDocument(image: image, fileName: "\(data.id)")
+            }
+        }
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
+        
         self.dismiss(animated: true)
     }
     
@@ -139,6 +149,8 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.section == 0 {
             return UIScreen.main.bounds.height * 0.2
+        } else if indexPath.section == 4 {
+            return 200
         } else {
             return 44
         }
@@ -230,6 +242,15 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .listGray
             cell.selectionStyle = .default
             
+            if let cellImage = cellImage {
+                cell.imageView?.image = cellImage
+                cell.imageView?.clipsToBounds = true
+                cell.imageView?.contentMode = .scaleAspectFit
+                if cellImage != UIImage(systemName: "photo.fill") {
+                    cell.textLabel?.isHidden = true
+                }
+            }
+            
             return cell
         }
     }
@@ -305,8 +326,11 @@ extension AddViewController: UIImagePickerControllerDelegate, UINavigationContro
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            
+            print("Choose")
+            cellImage = selectedImage
+            tableView.reloadData()
         }
+        dismiss(animated: true)
     }
 }
 

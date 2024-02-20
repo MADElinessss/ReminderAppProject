@@ -31,7 +31,6 @@ class MainCollectionViewCell: BaseCollectionViewCell {
     override func configureLayout() {
         iconImageView.snp.makeConstraints { make in
             make.leading.top.equalTo(contentView.safeAreaLayoutGuide).inset(16)
-            make.bottom.equalTo(titleLabel.snp.top)
             make.width.height.equalTo(36)
         }
         
@@ -60,7 +59,6 @@ class MainCollectionViewCell: BaseCollectionViewCell {
         self.iconImageView.image = UIImage(systemName: "calendar")
         self.iconImageView.preferredSymbolConfiguration = config
         
-//        iconImageView.image = UIImage(systemName: "calendar")
         iconImageView.tintColor = .white
         iconImageView.clipsToBounds = true
         iconImageView.layer.cornerRadius = 15

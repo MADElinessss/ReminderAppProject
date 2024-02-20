@@ -37,6 +37,9 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let realm = try! Realm()
+        print(realm.configuration.fileURL)
+        
         view.backgroundColor = .black
         
         // AddViewController에서 추가 버튼 누를 때 실행

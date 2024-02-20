@@ -60,7 +60,9 @@ class DetailViewController: BaseViewController {
         
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: "DetailTableViewCell")
         tableView.register(DetailDateTableViewCell.self, forCellReuseIdentifier: "DetailDateTableViewCell")
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "memo")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tag")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "priority")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "image")
         
         tableView.backgroundColor = .buttonGray
         
@@ -114,6 +116,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 || indexPath.section == 1 {
             return 100
+        } else if indexPath.section == 4 {
+            return 200
         } else {
             return 44
         }
@@ -141,12 +145,56 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.selectionStyle = .default
             
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "memo", for: indexPath)
+        } else if indexPath.section == 2 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tag", for: indexPath)
+            
+            if let task = task {
+                cell.textLabel?.text = "# " + task.tag
+                cell.textLabel?.textColor = UIColor(named: "tagColor")
+            } else {
+                cell.textLabel?.text = "태그"
+                cell.textLabel?.textColor = .gray
+            }
+            
             cell.layer.cornerRadius = 15
             cell.backgroundColor = .listGray
             cell.accessoryType = .disclosureIndicator
             cell.selectionStyle = .default
+            return cell
+            
+        } else if indexPath.section == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "priority", for: indexPath)
+            
+            if let task = task {
+                cell.textLabel?.text = task.priority
+                cell.textLabel?.textColor = .white
+                cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+            } else {
+                cell.textLabel?.text = "우선순위"
+                cell.textLabel?.textColor = .gray
+            }
+            
+            cell.layer.cornerRadius = 15
+            cell.backgroundColor = .listGray
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .default
+            
+            return cell
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath)
+            
+            if let task = task {
+                cell.imageView?.image = loadImageFromDocument(fileName: "\(task.id)")
+                
+            } else {
+                cell.imageView?.image = UIImage(systemName: "photo.fill")
+            }
+            cell.layer.cornerRadius = 15
+            cell.backgroundColor = .listGray
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .default
+            
             return cell
         }
     }

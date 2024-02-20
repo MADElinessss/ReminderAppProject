@@ -37,13 +37,13 @@ class DetailDateTableViewCell: UITableViewCell {
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).offset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+            make.bottom.equalTo(separatorLine.snp.top)
         }
         
         datePicker.snp.makeConstraints { make in
             make.top.equalTo(contentView.safeAreaLayoutGuide).offset(4)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+            make.bottom.equalTo(separatorLine.snp.top)
         }
         
         separatorLine.snp.makeConstraints { make in
@@ -56,14 +56,13 @@ class DetailDateTableViewCell: UITableViewCell {
         timeLabel.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).offset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
             make.bottom.equalTo(contentView)
         }
         
         timePicker.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(4)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+            make.bottom.equalTo(contentView)
         }
         
         separatorLine.backgroundColor = .darkGray

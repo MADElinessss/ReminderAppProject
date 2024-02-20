@@ -39,7 +39,7 @@ class DetailTableViewCell: UITableViewCell {
         titleTextField.snp.makeConstraints { make in
             make.top.equalTo(contentView.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(contentView).inset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.05)
+            make.bottom.equalTo(separatorLine.snp.top)
         }
         
         separatorLine.snp.makeConstraints { make in
@@ -52,7 +52,6 @@ class DetailTableViewCell: UITableViewCell {
         memoTextField.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(16)
-            make.height.equalTo(UIScreen.main.bounds.height * 0.15)
             make.bottom.equalTo(contentView)
         }
         

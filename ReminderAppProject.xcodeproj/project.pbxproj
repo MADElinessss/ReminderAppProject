@@ -139,6 +139,7 @@
 		C1BC998B2B7CD3E70083E181 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99F32B84846C0083E181 /* NewList */,
 				C1BC99ED2B83A2660083E181 /* Calendar */,
 				C1BC99DD2B8213A00083E181 /* Detail */,
 				C1BC99CF2B81DB0C0083E181 /* SchduledTasks */,
@@ -253,6 +254,13 @@
 				C1BC99F12B8427310083E181 /* FileManager+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		C1BC99F32B84846C0083E181 /* NewList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NewList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

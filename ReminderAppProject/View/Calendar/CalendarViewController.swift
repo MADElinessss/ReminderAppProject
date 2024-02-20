@@ -22,7 +22,6 @@ class CalendarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dateFormat.dateFormat = "yyyy년 MM월 dd일 hh시"
         list = repository.fetchItem("deadline")
     }
     
@@ -58,6 +57,14 @@ class CalendarViewController: BaseViewController {
         calendar.delegate = self
         calendar.dataSource = self
         
+        calendar.locale = Locale(identifier: "ko_KR")
+        calendar.appearance.titleDefaultColor = .white
+        calendar.appearance.titleWeekendColor = .white
+        calendar.appearance.headerTitleColor = .white
+        calendar.appearance.eventDefaultColor = .gray
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        calendar.scrollDirection = .vertical
+        
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -73,10 +80,6 @@ class CalendarViewController: BaseViewController {
         let leftitem = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationItem.leftBarButtonItem = leftitem
         
-        calendar.appearance.titleDefaultColor = .white
-        calendar.appearance.titleWeekendColor = .white
-        calendar.appearance.headerTitleColor = .white
-        
     }
     
     @objc func cancelButtonTapped() {
@@ -90,6 +93,7 @@ class CalendarViewController: BaseViewController {
         let predicate = NSPredicate(format: "deadline >= %@ && deadline < %@", start as NSDate, end as NSDate)
     
         list = realm.objects(ReminderTable.self).filter(predicate)
+        calendar.select(Date())
         
         tableView.reloadData()
     }
@@ -102,11 +106,18 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell")!
-        let row = list[indexPath.row]
-        
         cell.tintColor = .white
         cell.backgroundColor = .buttonGray
-        cell.textLabel?.text = "✅ \(row.title) \(row.memo)"
+        
+        let start = Calendar.current.startOfDay(for: Date())
+        let end: Date = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
+        let predicate = NSPredicate(format: "deadline >= %@ && deadline < %@", start as NSDate, end as NSDate)
+    
+        list = realm.objects(ReminderTable.self).filter(predicate)
+        
+        let row = list[indexPath.row]
+        cell.textLabel?.text = "✅ \(row.title)"
+        print(row.title)
         cell.textLabel?.textColor = .white
         
         cell.selectionStyle = .none
