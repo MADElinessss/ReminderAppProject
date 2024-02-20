@@ -165,13 +165,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 3 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "priority", for: indexPath)
             
-            if let task = task {
-                cell.textLabel?.text = task.priority
-                cell.textLabel?.textColor = .white
-                cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
-            } else {
-                cell.textLabel?.text = "우선순위"
-                cell.textLabel?.textColor = .gray
+            if let priority = task?.priority {
+                if priority != "" {
+                    cell.textLabel?.text = priority
+                    cell.textLabel?.textColor = .white
+                    cell.textLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+                } else {
+                    cell.textLabel?.text = "우선순위"
+                    cell.textLabel?.textColor = .gray
+                }
             }
             
             cell.layer.cornerRadius = 15
