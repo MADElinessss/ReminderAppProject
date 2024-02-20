@@ -37,8 +37,6 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let realm = try! Realm()
-        print(realm.configuration.fileURL)
         
         view.backgroundColor = .black
         
@@ -177,6 +175,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             cell.taskCount.text = "\(taskList.count)"
         case .scheduled:
             cell.taskCount.text = "\(scheduledCount)"
+        case .completed:
+            cell.taskCount.text = "\(repository.countDoneTasks())"
         default:
             cell.taskCount.text = ""
         }
