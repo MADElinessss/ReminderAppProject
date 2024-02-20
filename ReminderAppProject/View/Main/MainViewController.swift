@@ -133,7 +133,9 @@ class MainViewController: BaseViewController {
     }
     
     @objc func addListButtonTapped() {
-        
+        let addVC = AddListViewController()
+        let navController = UINavigationController(rootViewController: addVC)
+        self.present(navController, animated: true, completion: nil)
     }
     
     static func configureCollectionLayout() -> UICollectionViewLayout {

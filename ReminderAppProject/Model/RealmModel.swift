@@ -8,6 +8,21 @@
 import Foundation
 import RealmSwift
 
+// 💐 MARK: Realm 테이블 여러개 관리
+class Folder: Object {
+    @Persisted(primaryKey: true) var id: ObjectId
+    @Persisted var folderName: String
+    @Persisted var registrationDate: Date
+    // 💐 테이블을 추가해보자!
+    @Persisted var accountBookList: List<ReminderTable>
+    
+    convenience init(folderName: String, registrationDate: Date) {
+        self.init()
+        self.folderName = folderName
+        self.registrationDate = registrationDate
+    }
+}
+
 class ReminderTable: Object {
     
     @Persisted(primaryKey: true) var id: ObjectId

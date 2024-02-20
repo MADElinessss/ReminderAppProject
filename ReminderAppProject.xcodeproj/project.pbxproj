@@ -46,6 +46,9 @@
 		C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */; };
 		C1BC99F22B8427310083E181 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F12B8427310083E181 /* FileManager+Extension.swift */; };
 		C1BC99F52B8492760083E181 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F42B8492760083E181 /* AddListViewController.swift */; };
+		C1BC99F72B84B3140083E181 /* SelectedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F62B84B3140083E181 /* SelectedListTableViewCell.swift */; };
+		C1BC99F92B84B32A0083E181 /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F82B84B32A0083E181 /* ListsTableViewCell.swift */; };
+		C1BC99FB2B84B8070083E181 /* ListsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99FA2B84B8070083E181 /* ListsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +89,9 @@
 		C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC99F12B8427310083E181 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		C1BC99F42B8492760083E181 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
+		C1BC99F62B84B3140083E181 /* SelectedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedListTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99F82B84B32A0083E181 /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
+		C1BC99FA2B84B8070083E181 /* ListsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				C1BC99F42B8492760083E181 /* AddListViewController.swift */,
+				C1BC99F62B84B3140083E181 /* SelectedListTableViewCell.swift */,
+				C1BC99F82B84B32A0083E181 /* ListsTableViewCell.swift */,
+				C1BC99FA2B84B8070083E181 /* ListsCollectionViewCell.swift */,
 			);
 			path = NewList;
 			sourceTree = "<group>";
@@ -351,6 +360,7 @@
 			files = (
 				C1BC999A2B7CD6700083E181 /* MainCollectionViewCell.swift in Sources */,
 				C1BC99A02B7D0FE80083E181 /* AddTextFieldTableViewCell.swift in Sources */,
+				C1BC99F72B84B3140083E181 /* SelectedListTableViewCell.swift in Sources */,
 				C1BC99E72B8216480083E181 /* DetailSectionType.swift in Sources */,
 				C1BC99C62B7E2B110083E181 /* TodayTasksViewController.swift in Sources */,
 				C1BC99E32B8214220083E181 /* TitleLists.swift in Sources */,
@@ -371,12 +381,14 @@
 				C1BC99742B7CD30F0083E181 /* AppDelegate.swift in Sources */,
 				C1BC99A22B7D21E60083E181 /* AddTagViewController.swift in Sources */,
 				C1BC99E12B8213B60083E181 /* DetailViewController.swift in Sources */,
+				C1BC99F92B84B32A0083E181 /* ListsTableViewCell.swift in Sources */,
 				C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */,
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,
 				C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */,
 				C1BC99DC2B81F8B30083E181 /* RealmRepository.swift in Sources */,
 				C1BC998A2B7CD3E20083E181 /* MainViewController.swift in Sources */,
+				C1BC99FB2B84B8070083E181 /* ListsCollectionViewCell.swift in Sources */,
 				C1BC99C12B7E14C50083E181 /* AllTasksTableViewCell.swift in Sources */,
 				C1BC99B72B7DFF530083E181 /* RealmModel.swift in Sources */,
 				C1BC99922B7CD5700083E181 /* BaseViewController.swift in Sources */,
