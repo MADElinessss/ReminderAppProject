@@ -48,6 +48,18 @@ final class RealmRepository {
         return realm.objects(ReminderTable.self).filter("deadline >= %@", today).count
     }
     
+    // UPDATE
+    func updateIsDone(id: ObjectId, value: Bool) {
+        do {
+            try realm.write {
+                realm.create(ReminderTable.self, value: ["id": id, "isDone": value], update: .modified)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    // DELETE
     func deleteItem(_ item: ReminderTable) {
         do {
             try realm.write {

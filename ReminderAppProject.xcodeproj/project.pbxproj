@@ -45,6 +45,7 @@
 		C1BC99E92B821F870083E181 /* DetailDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */; };
 		C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */; };
 		C1BC99F22B8427310083E181 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F12B8427310083E181 /* FileManager+Extension.swift */; };
+		C1BC99F52B8492760083E181 /* AddListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F42B8492760083E181 /* AddListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDateTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		C1BC99F12B8427310083E181 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		C1BC99F42B8492760083E181 /* AddListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 		C1BC99F32B84846C0083E181 /* NewList */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99F42B8492760083E181 /* AddListViewController.swift */,
 			);
 			path = NewList;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				C1BC99C42B7E2B060083E181 /* TodayTasksTableViewCell.swift in Sources */,
 				C1BC999C2B7CD6A40083E181 /* BaseCollectionViewCell.swift in Sources */,
 				C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */,
+				C1BC99F52B8492760083E181 /* AddListViewController.swift in Sources */,
 				C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */,
 				C1BC99DF2B8213AC0083E181 /* DetailTableViewCell.swift in Sources */,
 				C1BC99F22B8427310083E181 /* FileManager+Extension.swift in Sources */,

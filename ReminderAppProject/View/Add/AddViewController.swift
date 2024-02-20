@@ -88,7 +88,7 @@ class AddViewController: BaseViewController {
     @objc func saveButtonTapped() {
         navigationItem.rightBarButtonItem?.isEnabled = true
         
-        let data = ReminderTable(title: titleText, memo: memoText, deadline: date, tag: tagLabel, priority: priority)
+        let data = ReminderTable(title: titleText, memo: memoText, deadline: date, tag: tagLabel, priority: priority, isDone: false)
         
         repository.createItem(data)
         

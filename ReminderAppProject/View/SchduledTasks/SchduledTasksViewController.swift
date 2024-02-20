@@ -129,6 +129,8 @@ extension SchduledTasksViewController: UITableViewDelegate, UITableViewDataSourc
         let task = scheduledTasks[indexPath.row]
         cell.taskTitle.text = task.title
         cell.taskMemo.text = task.memo
+        cell.id = task.id
+        cell.isChecked = task.isDone
         
         if let date = task.deadline {
             let dateToString = dateFormatter.string(from: date)

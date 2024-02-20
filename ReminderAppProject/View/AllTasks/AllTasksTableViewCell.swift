@@ -5,6 +5,7 @@
 //  Created by Madeline on 2/15/24.
 //
 
+import RealmSwift
 import SnapKit
 import UIKit
 
@@ -15,8 +16,11 @@ class AllTasksTableViewCell: UITableViewCell {
     let taskMemo = UILabel()
     let dateLabel = UILabel()
     let tagLabel = UILabel()
+    
+    var id = ObjectId()
+    let repository = RealmRepository()
 
-    var isChecked: Bool = false {
+    var isChecked: Bool = true {
         didSet {
             checkBox.reloadInputViews()
         }
@@ -77,6 +81,12 @@ class AllTasksTableViewCell: UITableViewCell {
         taskMemo.textColor = .gray
         taskMemo.font = .systemFont(ofSize: 14, weight: .medium)
         
+        if isChecked {
+            checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
+        } else {
+            checkBox.setImage(UIImage(systemName: "circle.fill"), for: .normal)
+        }
+        
         checkBox.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
         
         dateLabel.textColor = .gray
@@ -91,10 +101,10 @@ class AllTasksTableViewCell: UITableViewCell {
         isChecked.toggle()
         if isChecked {
             checkBox.setImage(UIImage(systemName: "circle"), for: .normal)
+            repository.updateIsDone(id: id, value: false)
         } else {
             checkBox.setImage(UIImage(systemName: "circle.fill"), for: .normal)
-            
-            // TODO: 완료됨으로 처리 후 뷰 reload
+            repository.updateIsDone(id: id, value: true)
         }
     }
 }

@@ -103,6 +103,7 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
         let task = taskList[indexPath.row]
         cell.taskTitle.text = task.title
         cell.taskMemo.text = task.memo
+        cell.id = task.id
         
         if let date = task.deadline {
             let dateToString = dateFormatter.string(from: date)
@@ -128,7 +129,6 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
         let navController = UINavigationController(rootViewController: detailVC)
         
         self.present(navController, animated: true, completion: nil)
-        
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
