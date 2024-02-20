@@ -13,6 +13,7 @@ class AddViewController: BaseViewController {
     
     let tableView = UITableView()
     let repository = RealmRepository()
+    var selectedImage = UIImageView()
     
     var sections: [SectionType] = [.titleMemo, .deadline, .tag, .priority, .imageAdd]
     
@@ -224,6 +225,7 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             cell.layer.cornerRadius = 10
             cell.textLabel?.text = AddViewTitleList[indexPath.section - 1]
             cell.textLabel?.textColor = .white
+            
             cell.accessoryType = .disclosureIndicator
             cell.backgroundColor = .listGray
             cell.selectionStyle = .default
@@ -271,7 +273,12 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(vc, animated: true)
             
         } else {
+            // MARK: 앨범에서 이미지 선택
+            let vc = UIImagePickerController()
             
+            vc.allowsEditing = true
+            vc.delegate = self
+            present(vc, animated: true)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -287,6 +294,18 @@ extension AddViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 priority = "높음"
             }
+        }
+    }
+}
+
+extension AddViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            
         }
     }
 }

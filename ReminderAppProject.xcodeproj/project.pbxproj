@@ -44,6 +44,7 @@
 		C1BC99E72B8216480083E181 /* DetailSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E62B8216480083E181 /* DetailSectionType.swift */; };
 		C1BC99E92B821F870083E181 /* DetailDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */; };
 		C1BC99EF2B83A2780083E181 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */; };
+		C1BC99F22B8427310083E181 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F12B8427310083E181 /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		C1BC99E62B8216480083E181 /* DetailSectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionType.swift; sourceTree = "<group>"; };
 		C1BC99E82B821F870083E181 /* DetailDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDateTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99EE2B83A2780083E181 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C1BC99F12B8427310083E181 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		C1BC99722B7CD30F0083E181 /* ReminderAppProject */ = {
 			isa = PBXGroup;
 			children = (
+				C1BC99F02B84271D0083E181 /* Extension */,
 				C1BC99DA2B81F8A20083E181 /* Manager */,
 				C1BC99B52B7DFF490083E181 /* Model */,
 				C1BC998B2B7CD3E70083E181 /* View */,
@@ -244,6 +247,14 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
+		C1BC99F02B84271D0083E181 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C1BC99F12B8427310083E181 /* FileManager+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -338,6 +349,7 @@
 				C1BC99D92B81EB160083E181 /* SectionType.swift in Sources */,
 				C1BC99D22B81DB1E0083E181 /* SchduledTasksViewController.swift in Sources */,
 				C1BC99DF2B8213AC0083E181 /* DetailTableViewCell.swift in Sources */,
+				C1BC99F22B8427310083E181 /* FileManager+Extension.swift in Sources */,
 				C1BC998F2B7CD4160083E181 /* AddViewController.swift in Sources */,
 				C1BC99BE2B7E00B30083E181 /* AllTasksListViewController.swift in Sources */,
 				C1BC99D42B81DB2B0083E181 /* SchduledTasksTableViewCell.swift in Sources */,
