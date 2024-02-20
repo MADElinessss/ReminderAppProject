@@ -57,8 +57,15 @@ class SelectedListTableViewCell: UITableViewCell {
         textField.backgroundColor = .darkGray
         textField.borderStyle = .none
         textField.layer.cornerRadius = 15
+        textField.addTarget(self, action: #selector(textFieldEditingChanged), for: .editingChanged)
     }
-
+    @objc func textFieldEditingChanged() {
+        let data = ["listTitle": textField.text ?? ""]
+        
+        NotificationCenter.default.post(name: NotificationNames.listTitleUpdated, object: nil, userInfo: data)
+        
+        
+    }
 }
 
 #Preview {

@@ -49,6 +49,7 @@
 		C1BC99F72B84B3140083E181 /* SelectedListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F62B84B3140083E181 /* SelectedListTableViewCell.swift */; };
 		C1BC99F92B84B32A0083E181 /* ListsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99F82B84B32A0083E181 /* ListsTableViewCell.swift */; };
 		C1BC99FB2B84B8070083E181 /* ListsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99FA2B84B8070083E181 /* ListsCollectionViewCell.swift */; };
+		C1BC99FF2B84E7C70083E181 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BC99FE2B84E7C70083E181 /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		C1BC99F62B84B3140083E181 /* SelectedListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedListTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99F82B84B32A0083E181 /* ListsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsTableViewCell.swift; sourceTree = "<group>"; };
 		C1BC99FA2B84B8070083E181 /* ListsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C1BC99FE2B84E7C70083E181 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +179,7 @@
 			children = (
 				C1BC99892B7CD3E20083E181 /* MainViewController.swift */,
 				C1BC99992B7CD6700083E181 /* MainCollectionViewCell.swift */,
+				C1BC99FE2B84E7C70083E181 /* MainTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				C1BC99A22B7D21E60083E181 /* AddTagViewController.swift in Sources */,
 				C1BC99E12B8213B60083E181 /* DetailViewController.swift in Sources */,
 				C1BC99F92B84B32A0083E181 /* ListsTableViewCell.swift in Sources */,
+				C1BC99FF2B84E7C70083E181 /* MainTableViewCell.swift in Sources */,
 				C1BC99CE2B81D4360083E181 /* CollectionViewItem.swift in Sources */,
 				C1BC99B22B7DEF050083E181 /* AddDeadlineViewController.swift in Sources */,
 				C1BC99762B7CD30F0083E181 /* SceneDelegate.swift in Sources */,

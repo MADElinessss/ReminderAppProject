@@ -12,7 +12,6 @@ enum CollectionViewItem: Int, CaseIterable {
     case today
     case scheduled
     case all
-    case flagged
     case completed
     
     var title: String {
@@ -20,7 +19,6 @@ enum CollectionViewItem: Int, CaseIterable {
         case .today: return "오늘"
         case .scheduled: return "예정"
         case .all: return "전체"
-        case .flagged: return "깃발 표시"
         case .completed: return "완료됨"
         }
     }
@@ -30,7 +28,6 @@ enum CollectionViewItem: Int, CaseIterable {
         case .today: return "calendar.badge.checkmark"
         case .scheduled: return "calendar"
         case .all: return "tray.fill"
-        case .flagged: return "flag.fill"
         case .completed: return "checkmark"
         }
     }
@@ -39,7 +36,6 @@ enum CollectionViewItem: Int, CaseIterable {
         case .today: return .systemBlue
         case .scheduled: return .systemRed
         case .all, .completed: return .gray
-        case .flagged: return .orange
         }
     }
 }

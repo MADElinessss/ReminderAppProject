@@ -18,18 +18,34 @@ class MainViewController: BaseViewController {
     var todayList: [ReminderTable] = []
     // 예정된 할 일
     var scheduledCount: Int = 0
+    
+    // 폴더 리스트
+    var folderList: Results<Folder>!
+    
     let repository = RealmRepository()
     
     let moreButton = UIButton()
     let titleLabel = UILabel()
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionLayout())
+    let tableView = UITableView()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isToolbarHidden = false
-        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(folderAddedNotificationReceived),
+            name: NotificationNames.folderAdded,
+            object: nil
+        )
+
         fetchDataAndUpdateUI()
     }
+
+    @objc func folderAddedNotificationReceived(_ notification: Notification) {
+        fetchDataAndUpdateUI()
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -60,6 +76,9 @@ class MainViewController: BaseViewController {
         todayList = repository.fetchTodayTasks()
         scheduledCount = repository.countScheduledTasks()
         
+        
+        folderList = repository.fetchFolders()
+        
         collectionView.reloadData()
     }
     
@@ -67,6 +86,7 @@ class MainViewController: BaseViewController {
         view.addSubview(moreButton)
         view.addSubview(titleLabel)
         view.addSubview(collectionView)
+        view.addSubview(tableView)
     }
     
     override func configureConstraints() {
@@ -83,7 +103,10 @@ class MainViewController: BaseViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(24)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).offset(48)
+        }
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(collectionView.snp.bottom).offset(24)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -101,6 +124,10 @@ class MainViewController: BaseViewController {
         titleLabel.text = "전체"
         titleLabel.font = .systemFont(ofSize: 32, weight: .semibold)
         titleLabel.textColor = .gray
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
         
         self.navigationController?.toolbar.barTintColor = .systemBlue
         let newTaskButton = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(newTaskButtonTapped))
@@ -138,6 +165,20 @@ class MainViewController: BaseViewController {
         self.present(navController, animated: true, completion: nil)
     }
     
+    @objc func handleListTitleUpdate(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let listTitle = userInfo["listTitle"] as? String else { return }
+    
+        let indexPath = IndexPath(row: 0, section: 0)
+        if let cell = tableView.cellForRow(at: indexPath) as? MainTableViewCell {
+            cell.titleLabel.text = listTitle
+            
+            folderList[indexPath.row].folderName = listTitle
+            tableView.reloadData()
+        }
+    }
+
+    
     static func configureCollectionLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewFlowLayout()
         
@@ -149,6 +190,19 @@ class MainViewController: BaseViewController {
         layout.scrollDirection = .vertical
         
         return layout
+    }
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return folderList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as! MainTableViewCell
+        let folder = folderList[indexPath.row]
+        cell.configureWith(folder: folder)
+        return cell
     }
 }
 

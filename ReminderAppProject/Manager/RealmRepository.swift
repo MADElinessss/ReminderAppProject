@@ -29,6 +29,10 @@ final class RealmRepository {
         return realm.objects(ReminderTable.self)
     }
     
+    func fetchFolders() -> Results<Folder> {
+        return realm.objects(Folder.self)
+    }
+    
     func fetchItem(by id: ObjectId) -> ReminderTable? {
         return realm.object(ofType: ReminderTable.self, forPrimaryKey: id)
     }

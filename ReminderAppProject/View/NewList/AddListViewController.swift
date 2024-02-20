@@ -27,8 +27,14 @@ class AddListViewController: BaseViewController {
         view.backgroundColor = .buttonGray
         
         list = realm.objects(Folder.self)
-
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTextFieldUpdate(notification:)), name: NotificationNames.listTitleUpdated, object: nil)
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func configureConstraints() {
         tableView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(16)
@@ -60,6 +66,13 @@ class AddListViewController: BaseViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
     
+    @objc func handleTextFieldUpdate(notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let listTitle = userInfo["listTitle"] as? String {
+            self.titleText = listTitle
+        }
+    }
+    
     @objc func cancelButtonTapped() {
         dismiss(animated: true)
     }
@@ -67,18 +80,26 @@ class AddListViewController: BaseViewController {
     @objc func saveButtonTapped() {
         // TODO: 수정사항 저장
         
-        let data = Folder(folderName: titleText, registrationDate: Date())
-        do {
-            try realm.write {
-                realm.add(data)
-            }
-        } catch {
-            print(error)
+        guard !titleText.isEmpty else {
+            print("Folder name is empty.")
+            return
         }
         
-        tableView.reloadData()
+        let newFolder = Folder()
+        newFolder.folderName = titleText
+        newFolder.registrationDate = Date()
         
-        self.dismiss(animated: true)
+        do {
+            try realm.write {
+                realm.add(newFolder)
+            }
+            dismiss(animated: true)
+        } catch let error {
+            print("Error saving folder: \(error.localizedDescription)")
+        }
+//
+//        tableView.reloadData()
+//        self.dismiss(animated: true)
     }
 }
 
