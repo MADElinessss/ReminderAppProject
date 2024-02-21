@@ -13,6 +13,7 @@ class Folder: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var folderName: String
     @Persisted var registrationDate: Date
+    @Persisted var folderColor: String
     // 💐 테이블을 추가해보자!
     @Persisted var accountBookList: List<ReminderTable>
     

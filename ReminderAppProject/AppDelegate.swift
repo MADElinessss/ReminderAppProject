@@ -5,6 +5,7 @@
 //  Created by Madeline on 2/14/24.
 //
 
+import RealmSwift
 import UIKit
 
 @main
@@ -13,7 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let configuration = Realm.Configuration(schemaVersion: 1) { migration, oldSchemeVersion in
+            
+            // ver 1: folderColor 추가했음
+            if oldSchemeVersion < 1 {
+                print("Schema: 0 > 1")
+            }
+            
+        }
+        
+        Realm.Configuration.defaultConfiguration = configuration
+        
+        
         return true
     }
 
