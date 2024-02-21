@@ -113,7 +113,7 @@ extension TodayTasksViewController: UITableViewDelegate, UITableViewDataSource {
         
         let task = taskList[indexPath.row]
         cell.taskTitle.text = task.title
-        cell.taskMemo.text = task.memo
+        cell.taskMemo.text = task.content
         cell.id = task.id
         cell.isChecked = task.isDone
         

@@ -134,7 +134,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let task = task {
                 cell.titleTextField.text = task.title
-                cell.memoTextField.text = task.memo
+                cell.memoTextField.text = task.content
             }
             
             return cell

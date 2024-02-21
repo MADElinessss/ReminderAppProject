@@ -15,11 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let configuration = Realm.Configuration(schemaVersion: 1) { migration, oldSchemeVersion in
+        let configuration = Realm.Configuration(schemaVersion: 2) { migration, oldSchemeVersion in
             
             // ver 1: folderColor 추가했음
             if oldSchemeVersion < 1 {
                 print("Schema: 0 > 1")
+            }
+            
+            // ver 2: memo -> content로 변경
+            if oldSchemeVersion < 2 {
+                print("Schema: 1 > 2")
+                migration.renameProperty(onType: ReminderTable.className(), from: "memo", to: "content")
             }
             
         }

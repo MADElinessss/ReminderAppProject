@@ -102,7 +102,7 @@ extension AllTasksListViewController: UITableViewDelegate, UITableViewDataSource
         
         let task = taskList[indexPath.row]
         cell.taskTitle.text = task.title
-        cell.taskMemo.text = task.memo
+        cell.taskMemo.text = task.content
         cell.id = task.id
         
         if let date = task.deadline {

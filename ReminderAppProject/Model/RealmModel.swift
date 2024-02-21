@@ -29,7 +29,7 @@ class ReminderTable: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     
     @Persisted var title: String
-    @Persisted var memo: String
+    @Persisted var content: String
     @Persisted var deadline: Date?
     @Persisted var tag: String
     @Persisted var priority: String
@@ -38,7 +38,7 @@ class ReminderTable: Object {
     convenience init(title: String, memo: String, deadline: Date?, tag: String, priority: String, isDone: Bool) {
         self.init()
         self.title = title
-        self.memo = memo
+        self.content = memo
         self.deadline = deadline
         self.tag = tag
         self.priority = priority
