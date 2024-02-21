@@ -101,6 +101,7 @@ class CalendarViewController: BaseViewController {
 
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("**",list.count)
         return list.count
     }
     
@@ -109,16 +110,13 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         cell.tintColor = .white
         cell.backgroundColor = .buttonGray
         
-        let start = Calendar.current.startOfDay(for: Date())
-        let end: Date = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
-        let predicate = NSPredicate(format: "deadline >= %@ && deadline < %@", start as NSDate, end as NSDate)
-    
-        list = realm.objects(ReminderTable.self).filter(predicate)
-        
-        let row = list[indexPath.row]
-        cell.textLabel?.text = "✅ \(row.title)"
-        print(row.title)
-        cell.textLabel?.textColor = .white
+        if !list.isEmpty && indexPath.row < list.count {
+            let row = list[indexPath.row]
+            cell.textLabel?.text = "✅ \(row.title)"
+            cell.textLabel?.textColor = .white
+        } else {
+            cell.textLabel?.text = "No reminders for this date"
+        }
         
         cell.selectionStyle = .none
         
@@ -140,12 +138,13 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
+        print("0 ")
         let start = Calendar.current.startOfDay(for: date)
         let end: Date = Calendar.current.date(byAdding: .day, value: 1, to: start) ?? Date()
         let predicate = NSPredicate(format: "deadline >= %@ && deadline < %@", start as NSDate, end as NSDate)
-    
+        print("1, ", list)
         list = realm.objects(ReminderTable.self).filter(predicate)
+        print("2, ", list)
         tableView.reloadData()
     }
 }
